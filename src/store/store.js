@@ -101,7 +101,8 @@ export default new Vuex.Store({
   actions: {
     startStations(context) {
       // console.log('Tu store startStations')
-      ajaxStartStations(context)
+      // ajaxStartStations(context)
+      ajaxGetSelectedPrograms(context)
     },
     getSelectedPrograms(context) {
       ajaxGetSelectedPrograms(context)
