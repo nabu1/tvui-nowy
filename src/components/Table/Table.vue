@@ -35,27 +35,25 @@ export default {
   },
   methods: {
     onRowClicked(item) {
-      console.clear()
       console.log('Tu onRowClicked: item = ', item)
-
       let favorites = new Set(this.$store.getters.getFavorites)
-      console.log('favorites PRZED = ', favorites.size)
 
       if (this.$store.getters.showFavorites) {
-        console.log('1')
+        console.log('favorites = ', favorites)
+
+        /* favorites = favorites.filter(el => {
+          return el.id !== item.id
+        }) */
+
         favorites.forEach(el => {
           if (el.id === item.id) favorites.delete(el)
         })
-      }
-      else {
-        console.log('2')
-        console.log('favorites PRZED = ', favorites.size)
+      } else {
+        //favorites.push(item)
         favorites.add(item)
-        console.log('favorites PO = ', favorites.size)
       }
 
       favorites = Array.from(favorites)
-      console.log('favorites = ', favorites)
       this.$store.dispatch('addFavorites', favorites)
     },
   },
