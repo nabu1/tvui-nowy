@@ -18,7 +18,7 @@ export const FIELDS = [
   }, */
          {
            key: 'dayString',
-           label: 'Dzień&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
+           label: 'Dzień&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
          },
          {
            key: 'channel',
