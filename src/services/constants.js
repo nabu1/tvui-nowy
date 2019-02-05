@@ -31,6 +31,16 @@ export const FIELDS = [
     sortable: true,
   },
   {
+    key: 'timestamp',
+    label: 'Stamp',
+    sortable: true,
+  },
+  {
+    key: 'date',
+    label: 'dateTimestamp',
+    sortable: true,
+  },
+  {
     key: 'title',
     label: 'Tytuł',
   },
