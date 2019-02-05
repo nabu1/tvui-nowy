@@ -7,7 +7,7 @@ export default {
   data() {
     return {
       selected: [],
-      fields: FIELDS
+      fields: FIELDS,
     }
   },
   computed: {
@@ -16,12 +16,10 @@ export default {
         console.log('1')
         // this.$store.commit('SHOW_FAVORITES', false)
         return this.$store.getters.getFavorites || []
-      }
-      else if (this.$store.getters.getCategoryFiltered && this.$store.getters.getCategoryFiltered.length) {
+      } else if (this.$store.getters.getCategoryFiltered && this.$store.getters.getCategoryFiltered.length) {
         // console.log('2')
         return this.$store.getters.getCategoryFiltered
-      }
-      else {
+      } else {
         console.log('3')
         this.$store.commit('SET_LOADING', false)
         return this.$store.getters.getTodaysPrograms
@@ -38,22 +36,27 @@ export default {
   methods: {
     onRowClicked(item) {
       console.log('Tu onRowClicked: item = ', item)
-      let favorites = this.$store.getters.getFavorites || []
+      let favorites = new Set(this.$store.getters.getFavorites)
 
       if (this.$store.getters.showFavorites) {
         console.log('favorites = ', favorites)
 
-        favorites = favorites.filter(el => {
+        /* favorites = favorites.filter(el => {
           return el.id !== item.id
+        }) */
+
+        favorites.forEach(el => {
+          if (el.id === item.id) favorites.delete(el)
         })
-      }
-      else {
-        favorites.push(item)
+      } else {
+        //favorites.push(item)
+        favorites.add(item)
       }
 
+      favorites = Array.from(favorites)
       this.$store.dispatch('addFavorites', favorites)
-    }
-  }
+    },
+  },
 }
 </script>
 
