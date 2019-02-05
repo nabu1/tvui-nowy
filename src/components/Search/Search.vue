@@ -30,8 +30,8 @@ export default {
     }
   },
   mounted() {
-    // !localStorage.getItem('vuex') ? this.$refs.modalFirstTime.show() : null
-    this.$refs.modalFirstTime.show()
+    if (this.$store.getters.getFirstTime) this.$refs.modalFirstTime.show()
+    this.$store.commit('FIRST_TIME')
   },
   methods: {
     categorySelected(categories) {
