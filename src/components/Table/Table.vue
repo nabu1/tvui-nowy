@@ -34,6 +34,7 @@ export default {
   created() {
     this.$store.dispatch('startStations')
     this.$store.dispatch('setLoading', true)
+    
   },
   methods: {
     onRowClicked(item) {
