@@ -16,12 +16,10 @@ export default {
       days: days(),
       startHours: HOURS,
       categoriesList: CATEGORIES,
+      loading: this.$store.getters.getLoading
     }
   },
   computed: {
-    loading() {
-      return this.$store.getters.getLoading
-    },
     endHours() {
       return endHours(store.getters.getStartHour || null)
     },
@@ -30,8 +28,10 @@ export default {
     }
   },
   mounted() {
-    if (this.$store.getters.getFirstTime) this.$refs.modalFirstTime.show()
-    this.$store.commit('FIRST_TIME')
+    if (!localStorage.getItem('vuex_ft')) {
+      this.$refs.modalFirstTime.show()
+      localStorage.setItem('vuex_ft', true)
+    }
   },
   methods: {
     categorySelected(categories) {
@@ -72,6 +72,7 @@ export default {
       this.$refs.modalFirstTime.hide()
     },
     search() {
+      console.log('setLoading = true')
       if (this.textSearch) return this.$store.dispatch('findText', this.textSearch)
 
       this.$store.commit('SHOW_FAVORITES', false)

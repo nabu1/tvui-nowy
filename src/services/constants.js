@@ -19,7 +19,7 @@ export const FIELDS = [
   }, */
          {
            key: 'dayString',
-           label: 'Dzień&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
+           label: 'Dzień&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
          },
          {
            key: 'channel',
@@ -36,11 +36,11 @@ export const FIELDS = [
            label: 'Stamp',
            sortable: true,
          }, */
-         {
+         /* {
            key: 'date',
            label: 'dateTimestamp',
            sortable: true,
-         },
+         }, */
          {
            key: 'title',
            label: 'Tytuł',

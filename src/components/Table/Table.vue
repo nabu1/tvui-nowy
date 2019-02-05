@@ -23,7 +23,7 @@ export default {
       }
       else {
         console.log('3')
-        this.$store.commit('SET_LOADING', false)
+        //this.$store.commit('SET_LOADING', false)
         return this.$store.getters.getTodaysPrograms
       }
     },
