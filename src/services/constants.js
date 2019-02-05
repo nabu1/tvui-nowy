@@ -11,52 +11,41 @@ export const FIELDS = [
     key: 'index',
     label: '#',
   },
-  {
+  /* {
     key: 'id',
     label: 'id',
     sortable: true,
-  },
+  }, */
   {
     key: 'dayString',
-    label: 'daystri',
+    label: 'Dzień&nbsp;&nbsp;&nbsp;',
   },
   {
     key: 'channel',
-    label: 'channel',
+    label: 'Stacja',
     sortable: true,
   },
   {
     key: 'time',
-    label: 'time',
+    label: 'Czas',
     sortable: true,
   },
-  /* {
-    key: 'timestamp',
-    label: 'timestamp'
-  },
-  */
-  /*
-  {
-    key: 'duration',
-    label: 'duration'
-  },
-  */
   {
     key: 'title',
-    label: 'title',
+    label: 'Tytuł',
   },
   {
     key: 'type',
-    label: 'type',
+    label: 'Rodzaj',
   },
   {
     key: 'category',
-    label: 'category',
+    label: 'Kategoria',
     sortable: true,
   },
   {
     key: 'link',
-    label: 'link',
+    label: 'Link&nbsp;&nbsp;',
   }
 ]
 
