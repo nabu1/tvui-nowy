@@ -6,7 +6,7 @@ import { LITERALS, CANAL, DISCOVERY_NATIONAL, FILMBOX_HBO_KINO, POLSAT, POLSKIE,
 export default {
   data() {
     return {
-      selected: this.$store.getters.getStations, 
+      selected: this.$store.getters.getStations,
       canal: CANAL,
       discoveryNational: DISCOVERY_NATIONAL,
       filmboxHboKino: FILMBOX_HBO_KINO,

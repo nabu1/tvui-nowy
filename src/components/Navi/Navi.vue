@@ -16,8 +16,9 @@ export default {
     },
     stations() {
       let stations = store.getters.getStations
+      console.log('stations = ', stations)
       if (stations) {
-        return (stations = store.getters.getStations.join(', ').length > 45 ? store.getters.getStations.join(', ').slice(0, 45) + '...' : store.getters.getStations.join(', '))
+        // return (stations = store.getters.getStations.join(', ').length > 45 ? store.getters.getStations.join(', ').slice(0, 45) + '...' : store.getters.getStations.join(', '))
       }
     },
   },
