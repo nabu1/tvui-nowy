@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
 
-import { ajaxGetSelectedPrograms, ajaxStartStations, ajaxFindText } from '../services/ajax'
+import { ajaxGetSelectedPrograms, ajaxFindText } from '../services/ajax'
 
 Vue.use(Vuex)
 
@@ -99,11 +99,6 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    startStations(context) {
-      // console.log('Tu store startStations')
-      // ajaxStartStations(context)
-      ajaxGetSelectedPrograms(context)
-    },
     getSelectedPrograms(context) {
       ajaxGetSelectedPrograms(context)
     },

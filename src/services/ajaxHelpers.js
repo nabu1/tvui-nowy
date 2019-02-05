@@ -7,12 +7,9 @@ export default (context) => {
   const startHour = context.getters.getStartHour
   const endHour = context.getters.getEndHour
   let categories = JSON.stringify(context.getters.getCategories)
-  //let stations = stationsList || JSON.stringify(context.getters.getStations)
 
   let stations = context.getters.getStations || LITERALS.START_STATIONS
   stations = JSON.stringify(stations)
-
-
 
   categories = categories === '[]' || categories === 'null' ? null : categories
   stations === 'null' ? null : stations

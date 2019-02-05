@@ -32,7 +32,7 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch('startStations')
+    this.$store.dispatch('getSelectedPrograms')
     this.$store.dispatch('setLoading', true)
   },
   methods: {

@@ -2,18 +2,6 @@ import axios from 'axios'
 import url from './ajaxHelpers'
 import { LITERALS } from './constants'
 
-export const ajaxStartStations = context => {
-  axios
-    .get(url(context, JSON.stringify(LITERALS.START_STATIONS)))
-    .then(res => {
-      context.commit('START_STATIONS', res.data)
-    })
-    .catch(err => console.log('myError:', err))
-    .finally(() => {
-      context.commit('SET_LOADING', false)
-    })
-}
-
 export const ajaxGetSelectedPrograms = context => {
   axios
     .get(url(context))
