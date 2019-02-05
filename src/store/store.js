@@ -67,15 +67,15 @@ export default new Vuex.Store({
     },
     SET_LOADING(state, loadingStatus) {
       state.loading = loadingStatus
-      console.log('state.loading = ', state.loading)
+      // console.log('state.loading = ', state.loading)
     },
     ADD_SELECTED_PROGRAMS(state, selectedPrograms) {
-      console.log('ADD_SELECTED_PROGRAMS = ')
-      console.log(selectedPrograms)
+      // console.log('ADD_SELECTED_PROGRAMS = ')
+      // console.log(selectedPrograms)
       state.selectedPrograms = selectedPrograms
     },
     SHOW_FAVORITES(state, bool) {
-      console.log('SHOW_FAVORITES = ', bool)
+      // console.log('SHOW_FAVORITES = ', bool)
       state.showFavorites = bool
     },
     AJAX_FIND_TEXT(state, foundPrograms) {
@@ -94,7 +94,7 @@ export default new Vuex.Store({
       state.favorites = favorites
     },
     RESET_FAVORITES(state) {
-      console.log('RESET_FAVORITES')
+      // console.log('RESET_FAVORITES')
       state.favorites = null
     }
   },
@@ -140,10 +140,6 @@ export default new Vuex.Store({
     addFavorites(context, favorites) {
       context.commit('ADD_FAVORITES', favorites)
     },
-    /* showFavorites(context, bool) {
-      console.log('showFavorites')
-      //context.commit('SHOW_FAVORITES', bool)
-    }, */
     resetFavorites(context) {
       context.commit('RESET_FAVORITES')
     },

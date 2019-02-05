@@ -56,7 +56,7 @@ export default {
     email() {
       const arrSelectedPrograms = []
       const selectedPrograms = store.getters.getSelectedPrograms
-      console.log('selectedPrograms = ', selectedPrograms)
+      // console.log('selectedPrograms = ', selectedPrograms)
 
       selectedPrograms.map(el => {
         arrSelectedPrograms.push(`${el.dayString} ${el.time} - ${el.channel} - ${el.title}\r\n`)
@@ -64,7 +64,7 @@ export default {
 
       const emailText = arrSelectedPrograms.join()
 
-      console.log('emailText = ', emailText)
+      // console.log('emailText = ', emailText)
 
       email(emailText) // fixme: odkomentuj to będzie słał maile
     },
@@ -72,7 +72,7 @@ export default {
       this.$refs.modalFirstTime.hide()
     },
     search() {
-      console.log('setLoading = true')
+      //console.log('setLoading = true')
       if (this.textSearch) return this.$store.dispatch('findText', this.textSearch)
 
       this.$store.commit('SHOW_FAVORITES', false)
@@ -80,7 +80,7 @@ export default {
       this.$store.dispatch('getSelectedPrograms')
     },
     resetAll() {
-      console.log('Reset')
+      //console.log('Reset')
       this.day = null
       this.startHour = null
       this.endHour = null
@@ -90,7 +90,7 @@ export default {
       this.$store.dispatch('resetState')
     },
     show() {
-      console.log('getters.getFavorites = ', this.$store.getters.getFavorites)
+      // console.log('getters.getFavorites = ', this.$store.getters.getFavorites)
       this.$store.commit('SHOW_FAVORITES', true)
     },
     resetFavorites() {
