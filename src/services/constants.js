@@ -4,6 +4,7 @@ export const LITERALS = {
   TV_LIST_SUFFIX: '&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI',
   START_STATIONS: ['TVP 1', 'TVP 2', 'TVN', 'POLSAT'],
   CATEGORY_NAMES: ['film', 'serial', 'sport', 'wiadomosci', 'rozrywka', 'dzieci', 'inne'],
+  EXCESSIVE_DATA_MSG: 'Zawęź przedział czasu, zmniejsz ilość kanałów lub kategorii, bo teraz część późniejszych programów nie jest wyświetlana'
 }
 
 export const FIELDS = [

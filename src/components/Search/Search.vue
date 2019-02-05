@@ -73,7 +73,6 @@ export default {
     },
     search() {
       if (this.textSearch) return this.$store.dispatch('findText', this.textSearch)
-      if (this.startHour && this.endHour && this.endHour < this.startHour) return this.$refs.modalHours.show()
 
       this.$store.commit('SHOW_FAVORITES', false)
       this.$store.dispatch('setLoading', true)
