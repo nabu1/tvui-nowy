@@ -14,12 +14,31 @@ export default {
       categories: this.$store.getters.getCategories,
       textSearch: null,
       days: days(),
-      startHours: HOURS,
       categoriesList: CATEGORIES,
       loading: this.$store.getters.getLoading
     }
   },
   computed: {
+    startHours() {
+      const day = this.$store.getters.getDay
+      const startHour = this.$store.getters.getStartHour
+      const endHour = this.$store.getters.getEndHour
+
+      console.log('day = ', new Date(day).getDate())
+      console.log('new Date().getDate() = ', new Date().getDate())
+
+      // if (!this.$store.getters.getDay && !this.$store.getters.getStartHour && !this.$store.getters.getEndHour) {
+      if ((!day || new Date(day).getDate() === new Date().getDate()) &&
+           !startHour &&
+           !endHour) {
+
+        const startHour = new Date().getHours()
+        const newHours = HOURS.slice(startHour - 2)
+        newHours.unshift(HOURS[0])
+        return newHours
+      }
+      return HOURS
+    },
     endHours() {
       return endHours(store.getters.getStartHour || null)
     },
