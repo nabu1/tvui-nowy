@@ -13,9 +13,9 @@ export default (context) => {
   console.log('endHour = ', endHour)
 
   console.log('context.getters.getCategories = ', context.getters.getCategories)
-  console.log('context.getters.getCategories.length = ', context.getters.getCategories.length)
+  //console.log('context.getters.getCategories.length = ', context.getters.getCategories.length)
 
-   const categories = !context.getters.getCategories.length ? null : context.getters.getCategories
+   const categories = context.getters.getCategories && context.getters.getCategories.length ? context.getters.getCategories : null
    console.log('categories = ', categories)
 
   // console.log('context.getters.getCategories.length = ', context.getters.getCategories.length > 0)
