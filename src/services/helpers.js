@@ -17,8 +17,6 @@ export const days = () => {
     const monthName = monthNames[new Date(startOfDay).getMonth()]
     const dayString = dayName + ' ' + dayOfMonth + ' ' + monthName
 
-    console.log('dayString = ', dayString)
-
     const dayObj = {
       text: dayString,
       value: startOfDay,
