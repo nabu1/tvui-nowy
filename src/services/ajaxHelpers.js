@@ -12,15 +12,22 @@ export default (context) => {
   console.log('startHour = ', startHour)
   console.log('endHour = ', endHour)
 
-  // console.log('context.getters.getCategories = ', context.getters.getCategories)
+  console.log('context.getters.getCategories = ', context.getters.getCategories)
+  console.log('context.getters.getCategories.length = ', context.getters.getCategories.length)
+
+   const categories = !context.getters.getCategories.length ? null : context.getters.getCategories
+   console.log('categories = ', categories)
+
   // console.log('context.getters.getCategories.length = ', context.getters.getCategories.length > 0)
 
-  //let categories = JSON.stringify(context.getters.getCategories)
-  let categories = context.getters.getCategories
+  //let categories = context.getters.getCategories
+  // let categories = JSON.stringify(context.getters.getCategories)
 
-  categories = categories && categories.length ? JSON.stringify(categories) : null
+  //categories = categories && categories.length ? JSON.stringify(categories) : []
+  //categories = categories && categories.length ? categories : []
 
-  console.log('categories = ', categories)
+  //console.log('categories = ', categories)
+  //console.log('typeof categories = ', typeof categories)
 
   //categories = categories === '[]' || categories === 'null' ? null : categories
   //categories = categories === [] || categories === null ? null : categories
@@ -59,7 +66,7 @@ export default (context) => {
   const queryCategoriesStations = `${queryHours},{$and:[{"category":{$in:${categories}}},{$and:[{"channel":{$in:${stations}}}]}]}]}`
 
   if (categories && stations) {
-    console.log('%c queryCategoriesStations = ', 'color: orange')
+    console.log('%c queryCategoriesStations = ' + stations + ' ' + categories,  'color: orange')
     query = queryCategoriesStations
   }
   else if (categories) {

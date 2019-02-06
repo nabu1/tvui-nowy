@@ -12,7 +12,7 @@ function initialState() {
     startHour: null,
     endHour: null,
     stations: null,
-    categories: null,
+    categories: [],
     todaysPrograms: null,
     selectedPrograms: null,
     categoryFiltered: null,
