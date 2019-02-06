@@ -1,17 +1,8 @@
 {
+  "version": 2,
   "name": "TVui",
-  "type": "static",
-  "static": {
-    "public": "dist",
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
-  },
   "alias": "tvui",
   "files": [
-    "dist"
+    "./dist"
   ]
 }

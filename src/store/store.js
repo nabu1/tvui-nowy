@@ -35,7 +35,6 @@ export default new Vuex.Store({
     getStartHour: state => state.startHour,
     getEndHour: state => state.endHour,
     getLoading: state => state.loading,
-    getSelectedPrograms: state => state.selectedPrograms,
     getFavorites: state => state.favorites,
     showFavorites: state => state.showFavorites,
     showCategories: state => state.showCategories,
