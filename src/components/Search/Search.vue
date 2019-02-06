@@ -36,8 +36,8 @@ export default {
   methods: {
     categorySelected(categories) {
       console.log('categorySelected')
-      console.log('this.$store.getters.getTodaysPrograms = ', this.$store.getters.getTodaysPrograms)
-     
+      //console.log('this.$store.getters.getTodaysPrograms = ', this.$store.getters.getTodaysPrograms)
+
       const todaysPrograms = this.$store.getters.getTodaysPrograms
 
       const categoryFiltered = todaysPrograms.filter(el => {
@@ -45,11 +45,11 @@ export default {
       })
 
       console.log('categories = ', categories)
-      console.log('categoryFiltered = ', categoryFiltered)
+      //console.log('categoryFiltered = ', categoryFiltered)
 
+      this.$store.commit('SHOW_CATEGORIES', true)
       this.$store.dispatch('setCategoryFiltered', categoryFiltered)
       this.$store.dispatch('setCategories', categories)
-
     },
     daySelected(day) {
       console.log('day = ', day)
@@ -83,6 +83,7 @@ export default {
       //console.log('setLoading = true')
       if (this.textSearch) return this.$store.dispatch('findText', this.textSearch)
 
+      this.$store.commit('SHOW_CATEGORIES', false)
       this.$store.commit('SHOW_FAVORITES', false)
       this.$store.dispatch('setLoading', true)
       this.$store.dispatch('getSelectedPrograms')

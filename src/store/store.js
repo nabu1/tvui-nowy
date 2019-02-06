@@ -19,6 +19,7 @@ function initialState() {
     loading: false,
     favorites: null,
     showFavorites: false,
+    showCategories: true,
   }
 }
 
@@ -37,11 +38,12 @@ export default new Vuex.Store({
     getSelectedPrograms: state => state.selectedPrograms,
     getFavorites: state => state.favorites,
     showFavorites: state => state.showFavorites,
+    showCategories: state => state.showCategories,
   },
   mutations: {
     START_STATIONS(state, todaysPrograms) {
-      console.log('todaysPrograms = ')
-      console.table(todaysPrograms, ['dayString', 'channel', 'time', 'category', 'title'])
+      //console.log('todaysPrograms = ')
+      //console.table(todaysPrograms, ['dayString', 'channel', 'time', 'category', 'title'])
 
       state.todaysPrograms = todaysPrograms || state.selectedPrograms
 
@@ -77,8 +79,11 @@ export default new Vuex.Store({
       state.selectedPrograms = selectedPrograms
     },
     SHOW_FAVORITES(state, bool) {
-      // console.log('SHOW_FAVORITES = ', bool)
       state.showFavorites = bool
+    },
+    SHOW_CATEGORIES(state, bool) {
+      console.log('%c SHOW_CATEGORIES = ' + bool, 'color: orange')
+      state.showCategories = bool
     },
     AJAX_FIND_TEXT(state, foundPrograms) {
       state.todaysPrograms = foundPrograms
