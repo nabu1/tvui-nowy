@@ -18,9 +18,11 @@ export default {
         return this.$store.getters.getFavorites || []
       }
       else if (this.$store.getters.getCategoryFiltered && this.$store.getters.getCategoryFiltered.length) {
-        console.log('%c 2','color: red')
-        console.log('this.$store.getters.getCategoryFiltered = ', this.$store.getters.getCategoryFiltered)
-        return this.$store.getters.getCategoryFiltered
+        //console.log('%c 2','color: red')
+        console.log('%c this.$store.getters.getCategoryFiltered = ', 'color: yellow')
+        console.log(this.$store.getters.getCategoryFiltered)
+        //return this.$store.getters.getCategoryFiltered
+        return this.$store.getters.getTodaysPrograms
       }
       else {
         console.log('%c 3','color: red')

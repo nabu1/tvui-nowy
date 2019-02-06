@@ -15,7 +15,8 @@ export default (context) => {
   console.log('context.getters.getCategories = ', context.getters.getCategories)
   //console.log('context.getters.getCategories.length = ', context.getters.getCategories.length)
 
-   const categories = context.getters.getCategories && context.getters.getCategories.length ? context.getters.getCategories : null
+   let categories = context.getters.getCategories && context.getters.getCategories.length ? JSON.stringify(context.getters.getCategories) : null
+
    console.log('categories = ', categories)
 
   // console.log('context.getters.getCategories.length = ', context.getters.getCategories.length > 0)

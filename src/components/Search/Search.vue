@@ -37,7 +37,7 @@ export default {
     categorySelected(categories) {
       console.log('categorySelected')
       console.log('this.$store.getters.getTodaysPrograms = ', this.$store.getters.getTodaysPrograms)
-
+     
       const todaysPrograms = this.$store.getters.getTodaysPrograms
 
       const categoryFiltered = todaysPrograms.filter(el => {

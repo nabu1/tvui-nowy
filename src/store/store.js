@@ -40,7 +40,8 @@ export default new Vuex.Store({
   },
   mutations: {
     START_STATIONS(state, todaysPrograms) {
-      console.log('todaysPrograms = ', todaysPrograms)
+      console.log('todaysPrograms = ')
+      console.table(todaysPrograms, ['dayString', 'channel', 'time', 'category', 'title'])
 
       state.todaysPrograms = todaysPrograms || state.selectedPrograms
 
