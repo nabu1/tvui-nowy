@@ -82,7 +82,7 @@ export default new Vuex.Store({
       state.showFavorites = bool
     },
     SHOW_CATEGORIES(state, bool) {
-      console.log('%c SHOW_CATEGORIES = ' + bool, 'color: orange')
+      // console.log('%c SHOW_CATEGORIES = ' + bool, 'color: orange')
       state.showCategories = bool
     },
     AJAX_FIND_TEXT(state, foundPrograms) {

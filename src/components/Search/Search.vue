@@ -24,8 +24,8 @@ export default {
       const startHour = this.$store.getters.getStartHour
       const endHour = this.$store.getters.getEndHour
 
-      console.log('day = ', new Date(day).getDate())
-      console.log('new Date().getDate() = ', new Date().getDate())
+      // console.log('day = ', new Date(day).getDate())
+      // console.log('new Date().getDate() = ', new Date().getDate())
 
       // if (!this.$store.getters.getDay && !this.$store.getters.getStartHour && !this.$store.getters.getEndHour) {
       if ((!day || new Date(day).getDate() === new Date().getDate()) &&
@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     categorySelected(categories) {
-      console.log('categorySelected')
+      // console.log('categorySelected')
       //console.log('this.$store.getters.getTodaysPrograms = ', this.$store.getters.getTodaysPrograms)
 
       const todaysPrograms = this.$store.getters.getTodaysPrograms
@@ -63,7 +63,7 @@ export default {
         return categories.includes(el.category)
       })
 
-      console.log('categories = ', categories)
+      // console.log('categories = ', categories)
       //console.log('categoryFiltered = ', categoryFiltered)
 
       this.$store.commit('SHOW_CATEGORIES', true)
@@ -71,7 +71,7 @@ export default {
       this.$store.dispatch('setCategories', categories)
     },
     daySelected(day) {
-      console.log('day = ', day)
+      // console.log('day = ', day)
       this.$store.dispatch('setDay', day)
     },
     startHourSelected(startHour) {

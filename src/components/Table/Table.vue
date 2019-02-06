@@ -20,20 +20,20 @@ export default {
 
       //if (this.$store.getters.showFavorites) {
       if (showFavorites) {
-        console.log('%c 1','color: red')
+        // console.log('%c 1','color: red')
         // this.$store.commit('SHOW_FAVORITES', false)
         return getFavorites || []
       }
       //else if (this.$store.getters.getCategoryFiltered && this.$store.getters.getCategoryFiltered.length) {
       else if (showCategories && categoryFiltered && categoryFiltered.length) {
         //console.log('%c 2','color: red')
-        console.log('%c categoryFiltered = ', 'color: yellow')
-        console.log(categoryFiltered)
+        // console.log('%c categoryFiltered = ', 'color: yellow')
+        // console.log(categoryFiltered)
         return this.$store.getters.getCategoryFiltered
         //return todaysPrograms
       }
       else {
-        console.log('%c 3','color: red')
+        // console.log('%c 3','color: red')
         //this.$store.commit('SET_LOADING', false)
         return todaysPrograms
       }
