@@ -24,13 +24,8 @@ export default {
       const startHour = this.$store.getters.getStartHour
       const endHour = this.$store.getters.getEndHour
 
-      // console.log('day = ', new Date(day).getDate())
-      // console.log('new Date().getDate() = ', new Date().getDate())
-
-      // if (!this.$store.getters.getDay && !this.$store.getters.getStartHour && !this.$store.getters.getEndHour) {
       if ((!day || new Date(day).getDate() === new Date().getDate()) &&
-           !startHour &&
-           !endHour) {
+           !startHour && !endHour) {
 
         const startHour = new Date().getHours()
         const newHours = HOURS.slice(startHour - 2)
