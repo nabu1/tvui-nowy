@@ -45,6 +45,7 @@ export default {
       this.$store.dispatch('setCategories', categories)
     },
     daySelected(day) {
+      console.log('day = ', day)
       this.$store.dispatch('setDay', day)
     },
     startHourSelected(startHour) {

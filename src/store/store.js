@@ -40,9 +40,10 @@ export default new Vuex.Store({
   },
   mutations: {
     START_STATIONS(state, todaysPrograms) {
-      //console.log('Tu store START_STATIONS')
-      //console.log('todaysPrograms = ', todaysPrograms)
+      console.log('todaysPrograms = ', todaysPrograms)
+
       state.todaysPrograms = todaysPrograms || state.selectedPrograms
+
       if (todaysPrograms) {
         state.loading = true
       }
