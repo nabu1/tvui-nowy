@@ -1,5 +1,5 @@
 {
-  "name": "ShopsRing",
+  "name": "TVui",
   "type": "static",
   "static": {
     "public": "dist",
@@ -10,7 +10,7 @@
       }
     ]
   },
-  "alias": "shopsring",
+  "alias": "tvui",
   "files": [
     "dist"
   ]
