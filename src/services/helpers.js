@@ -1,4 +1,3 @@
-/* cSpell:disable */
 import emailjs from 'emailjs-com'
 
 export const days = () => {
@@ -13,7 +12,6 @@ export const days = () => {
 
   for (let index = 0; index < 7; index++) {
     const startOfDay = new Date().setUTCHours(index * 24, 0, 0, 0)
-
     const dayName = weekDayNames[new Date(startOfDay).getDay()]
     const dayOfMonth = new Date(startOfDay).getDate()
     const monthName = monthNames[new Date(startOfDay).getMonth()]
@@ -53,7 +51,7 @@ export const email = text => {
 
   emailjs.send('gmail', 'tv', templateParams)
     .then(res => {
-      console.log('SUCCESS!', res.status, res.text)
+      console.log('EMAIL SENT !', res.status, res.text)
     })
     .catch(err => console.log('EMAIL FAILED:', err))
 }

@@ -25,7 +25,7 @@ export default {
       const endHour = this.$store.getters.getEndHour
 
       if ((!day || new Date(day).getDate() === new Date().getDate()) &&
-           !startHour && !endHour) {
+        !startHour && !endHour) {
 
         const startHour = new Date().getHours()
         const newHours = HOURS.slice(startHour - 2)
@@ -49,24 +49,17 @@ export default {
   },
   methods: {
     categorySelected(categories) {
-      // console.log('categorySelected')
-      //console.log('this.$store.getters.getTodaysPrograms = ', this.$store.getters.getTodaysPrograms)
-
       const todaysPrograms = this.$store.getters.getTodaysPrograms
 
       const categoryFiltered = todaysPrograms.filter(el => {
         return categories.includes(el.category)
       })
 
-      // console.log('categories = ', categories)
-      //console.log('categoryFiltered = ', categoryFiltered)
-
       this.$store.commit('SHOW_CATEGORIES', true)
       this.$store.dispatch('setCategoryFiltered', categoryFiltered)
       this.$store.dispatch('setCategories', categories)
     },
     daySelected(day) {
-      // console.log('day = ', day)
       this.$store.dispatch('setDay', day)
     },
     startHourSelected(startHour) {
@@ -78,23 +71,18 @@ export default {
     email() {
       const arrSelectedPrograms = []
       const selectedPrograms = store.getters.getSelectedPrograms
-      // console.log('selectedPrograms = ', selectedPrograms)
 
       selectedPrograms.map(el => {
         arrSelectedPrograms.push(`${el.dayString} ${el.time} - ${el.channel} - ${el.title}\r\n`)
       })
 
       const emailText = arrSelectedPrograms.join()
-
-      // console.log('emailText = ', emailText)
-
-      email(emailText) // fixme: odkomentuj to będzie słał maile
+      email(emailText)
     },
     hideModalFirstTime() {
       this.$refs.modalFirstTime.hide()
     },
     search() {
-      //console.log('setLoading = true')
       if (this.textSearch) return this.$store.dispatch('findText', this.textSearch)
 
       this.$store.commit('SHOW_CATEGORIES', false)
@@ -103,17 +91,14 @@ export default {
       this.$store.dispatch('getSelectedPrograms')
     },
     resetAll() {
-      //console.log('Reset')
       this.day = null
       this.startHour = null
       this.endHour = null
       this.categories = null
       this.textSearch = null
-      // localStorage.setItem('vuex', []),
       this.$store.dispatch('resetState')
     },
     show() {
-      // console.log('getters.getFavorites = ', this.$store.getters.getFavorites)
       this.$store.commit('SHOW_FAVORITES', true)
     },
     resetFavorites() {

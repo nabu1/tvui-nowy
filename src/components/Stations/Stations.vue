@@ -18,7 +18,6 @@ export default {
   },
   methods: {
     stationsSelected(stations) {
-      // console.log('stations = ', stations)
       this.$store.dispatch('setStations', stations)
     },
     onOK() {
