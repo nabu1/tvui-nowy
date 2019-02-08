@@ -1,6 +1,7 @@
 /* eslint-disable*/
 describe('1. Selection by hours', () => {
-  before(() => {
+  before(() => { })
+  beforeEach(() => {
     cy.visit('http://localhost:8080')
     .get("[data-test='day']").as('day')
     .get("[data-test='startHour']").as('startHour')
@@ -10,16 +11,16 @@ describe('1. Selection by hours', () => {
     .get("[data-test='btnResetAll']").as('btnResetAll')
     .get("[data-test='btnShow']").as('btnShow')
     .get("[data-test='btnResetFavorites']").as('btnResetFavorites')
-
   })
 
-  beforeEach(() => {
-    cy.visit('http://localhost:8080')
-    .get("[data-test='modalFirstTime']", { timeout: 2000 })
-    .get("[data-test='hideModalFirstTime']")
+  it('1. Entering nothing gets "Pt, 8 Luty" in results "Dzień" row', () => {
+    cy.get('@btnSearch')
+      .click()
+      .get('tr:nth-child(1) > td:nth-child(2)', { timeout: 8000 })
+      .should('have.text', 'Pt, 8 Luty')
   })
 
-  it.only('1. Entering "Nie, 10 Luty" gets "Nie, 10 Luty" in results "Dzień" row', () => {
+  it('2. Entering "Nie, 10 Luty" gets "Nie, 10 Luty" in results "Dzień" row', () => {
       cy.get('@day')
       .select('Nie 10 Luty')
       .get('@btnSearch')
@@ -27,6 +28,9 @@ describe('1. Selection by hours', () => {
       .get('tr:nth-child(1) > td:nth-child(2)', { timeout: 5000 })
       .should('have.text', 'Nie, 10 Luty')
   })
+
+
+
 })
 
 
