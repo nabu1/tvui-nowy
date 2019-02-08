@@ -12,12 +12,14 @@ describe('1. Selection by hours', () => {
       .select('Nie 10 Luty')
       .get("[data-test='buttonSearch']")
       .click()
-      //.get('#stockTable')
-      //.find('tbody')
+      .get('tr:nth-child(1) > td:nth-child(2)', { timeout: 5000 })
+      .should('have.text', 'Nie, 10 Luty')
       //.find('tr')
       //.should('have.length', 1)
   })
 })
+
+//#table > tbody > tr:nth-child(1) > td:nth-child(2)
 
 describe('2. Wyszukiwanie sklepów - brak miasta lub ulicy', () => {
   beforeEach(() => {
