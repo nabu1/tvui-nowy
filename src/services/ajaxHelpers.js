@@ -8,7 +8,7 @@ export default context => {
   if (!context.getters.getDay || new Date(context.getters.getDay).getDate() === new Date().getDate()) {
     startHour = new Date().getHours()
   }
- else {
+  else {
     startHour = context.getters.getStartHour || 3
   }
 
@@ -28,13 +28,13 @@ export default context => {
   if (categories && stations) {
     query = queryCategoriesStations
   }
- else if (categories) {
+  else if (categories) {
     query = queryCategories
   }
- else if (stations && stations.length) {
+  else if (stations && stations.length) {
     query = queryStations
   }
- else {
+  else {
     query = `${queryHours}]}`
   }
 

@@ -44,7 +44,7 @@ export default {
           return el.id !== item.id
         })
       }
- else {
+      else {
         const isPresent = favorites.some(el => {
           return el.id === item.id
         })

@@ -2,7 +2,7 @@
 
 <script>
 import store from '../../store/store'
-import { days, endHours, email } from '../../services/helpers'
+import { days, endHours } from '../../services/helpers'
 import { CATEGORIES, HOURS } from '../../services/constants'
 
 export default {
@@ -64,17 +64,6 @@ export default {
     },
     endHourSelected(endHour) {
       this.$store.dispatch('setEndHour', endHour)
-    },
-    email() {
-      const arrSelectedPrograms = []
-      const selectedPrograms = store.getters.getSelectedPrograms
-
-      selectedPrograms.map(el => {
-        arrSelectedPrograms.push(`${el.dayString} ${el.time} - ${el.channel} - ${el.title}\r\n`)
-      })
-
-      const emailText = arrSelectedPrograms.join()
-      email(emailText)
     },
     hideModalFirstTime() {
       this.$refs.modalFirstTime.hide()

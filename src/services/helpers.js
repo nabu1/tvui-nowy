@@ -1,5 +1,3 @@
-import emailjs from 'emailjs-com'
-
 export const days = () => {
   const weekDayNames = ['Nie', 'Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob']
   const monthNames = ['Sty', 'Luty', 'Mar', 'Kwi', 'Maj', 'Cze', 'Lip', 'Sie', 'Wrz', 'Paź', 'Lis', 'Gru']
@@ -41,13 +39,4 @@ export const endHours = startHour => {
     hours.push(hour)
   }
   return hours
-}
-
-export const email = () => {
-  emailjs
-    .send('gmail', 'tv')
-    .then(res => {
-      console.log('EMAIL SENT !', res.status, res.text)
-    })
-    .catch(err => console.log('EMAIL FAILED:', err))
 }
