@@ -18,7 +18,7 @@ module.exports = {
     'func-call-spacing': 0,
     'import/prefer-default-export': 'warn',
     // indent: ['error', 2],
-    'linebreak-style': ['error', 'unix'],
+    'linebreak-style': "off",
     //'max-len': [1, 200, 1, { ignoreUrls: true, ignoreTrailingComments: true, ignoreTemplateLiterals: true }],
     'no-alert': 'off',
     // 'no-multiple-empty-lines': [1, { max: 1 }],

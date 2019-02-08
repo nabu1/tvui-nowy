@@ -15,7 +15,7 @@ export const days = () => {
     const dayName = weekDayNames[new Date(startOfDay).getDay()]
     const dayOfMonth = new Date(startOfDay).getDate()
     const monthName = monthNames[new Date(startOfDay).getMonth()]
-    const dayString = dayName + ' ' + dayOfMonth + ' ' + monthName
+    const dayString = `${dayName  } ${  dayOfMonth  } ${  monthName}`
 
     const dayObj = {
       text: dayString,
@@ -44,12 +44,8 @@ export const endHours = startHour => {
 }
 
 export const email = text => {
-  const templateParams = {
-    name: 'James',
-    notes: text,
-  }
-
-  emailjs.send('gmail', 'tv', templateParams)
+  emailjs
+    .send('gmail', 'tv')
     .then(res => {
       console.log('EMAIL SENT !', res.status, res.text)
     })
