@@ -7,7 +7,7 @@ export default {
   data() {
     return {
       selected: [],
-      fields: FIELDS
+      fields: FIELDS,
     }
   },
   computed: {
@@ -24,9 +24,8 @@ export default {
       else if (showCategories && categoryFiltered && categoryFiltered.length) {
         return this.$store.getters.getCategoryFiltered
       }
-      else {
-        return todaysPrograms
-      }
+
+      return todaysPrograms
     },
     loading() {
       return this.$store.getters.getLoading
@@ -52,8 +51,8 @@ export default {
         if (!isPresent) favorites.push(item)
       }
       this.$store.dispatch('addFavorites', favorites)
-    }
-  }
+    },
+  },
 }
 </script>
 

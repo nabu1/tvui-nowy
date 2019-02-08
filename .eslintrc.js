@@ -12,7 +12,7 @@ module.exports = {
     'arrow-parens': 0,
     'brace-style': ['error', 'stroustrup', { allowSingleLine: true }],
     'computed-property-spacing': 0,
-    // 'comma-dangle': ['error', 'only-multiline'],
+    'comma-dangle': 'off',
     'consistent-return': 'off',
     'dot-notation':'off',
     'func-call-spacing': 0,
@@ -35,7 +35,7 @@ module.exports = {
     'space-in-parens': 0,
     'space-before-function-paren': 0,
     'spaced-comment': 0,
-    //'vue/html-self-closing': 'never',
+    'vue/html-self-closing': 'off'
   },
 
   parserOptions: {

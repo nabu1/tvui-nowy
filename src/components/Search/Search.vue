@@ -15,7 +15,7 @@ export default {
       textSearch: null,
       days: days(),
       categoriesList: CATEGORIES,
-      loading: this.$store.getters.getLoading
+      loading: this.$store.getters.getLoading,
     }
   },
   computed: {
@@ -24,11 +24,8 @@ export default {
       const startHour = this.$store.getters.getStartHour
       const endHour = this.$store.getters.getEndHour
 
-      if ((!day || new Date(day).getDate() === new Date().getDate()) &&
-        !startHour && !endHour) {
-
-        const startHour = new Date().getHours()
-        const newHours = HOURS.slice(startHour - 2)
+      if ((!day || new Date(day).getDate() === new Date().getDate()) && !startHour && !endHour) {
+        const newHours = HOURS.slice(new Date().getHours() - 2)
         newHours.unshift(HOURS[0])
         return newHours
       }
@@ -115,6 +112,6 @@ div {
   color: white;
 }
 .d-block {
-  color: black
+  color: black;
 }
 </style>

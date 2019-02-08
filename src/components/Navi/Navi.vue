@@ -2,12 +2,11 @@
 
 <script>
 import store from '../../store/store'
-import { LITERALS } from '../../services/constants'
 
 export default {
   data() {
     return {
-      showBadge: false
+      showBadge: false,
     }
   },
   computed: {
@@ -15,7 +14,7 @@ export default {
       return this.$store.getters.getLoading
     },
     stations() {
-      let stations = store.getters.getStations
+      const stations = store.getters.getStations
       if (stations) {
         return stations.join(', ').length > 70 ? stations.join(', ').slice(0, 70) + ' ...' : stations.join(', ')
       }
