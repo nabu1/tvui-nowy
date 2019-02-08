@@ -11,6 +11,7 @@ describe('1. Selection by hours', () => {
     .get("[data-test='btnResetAll']").as('btnResetAll')
     .get("[data-test='btnShow']").as('btnShow')
     .get("[data-test='btnResetFavorites']").as('btnResetFavorites')
+    .get("[data-test='table']").as('table')
   })
 
   it('1. Entering nothing gets "Pt, 8 Luty" in results "Dzień" row', () => {
@@ -29,8 +30,16 @@ describe('1. Selection by hours', () => {
       .should('have.text', 'Nie, 10 Luty')
   })
 
-
-
+  it.only('3. Entering 3rd option gets "Nie, 10 Luty" in results "Dzień" row', () => {
+    cy.get('@startHour')
+    .select('22')
+    .get('@btnSearch')
+    .click()
+    .get('#table > tbody > tr:nth-child(1) > td:nth-child(4)')
+    .should('have.text', '22:00')
+    //.should('match', /22:00/)
+  })
 })
 
-
+// #table > tbody > tr:nth-child(1) > td:nth-child(4)
+// #table > tbody > tr:nth-child(1) > td:nth-child(4)
