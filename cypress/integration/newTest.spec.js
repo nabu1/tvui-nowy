@@ -2,11 +2,14 @@
 describe('1. Selection by hours', () => {
   beforeEach(() => {
     cy.visit('http://localhost:8080')
-    })
+  })
 
-    it.only('1. Enter "Pt 8 Luty and click Search button to get results', () => {
-    cy.get("[data-test='day']")
-      .select('Pt 9 Luty')
+  it.only('1. Enter "Pt 8 Luty and click Search button to get results', () => {
+    //cy.get("[data-test='modalFirstTime']", { timeout: 2000 })
+    cy.get("[data-test='hideModalFirstTime']")
+      .click()
+      .get("[data-test='day']")
+      .select('Nie 10 Luty')
       .get("[data-test='buttonSearch']")
       .click()
       //.get('#stockTable')
@@ -139,3 +142,6 @@ describe(`3. Reset buttons (są sklepy (Wwa, Dolna 5a, 600m).
       .should('not.exist')
   })
 })
+
+
+
