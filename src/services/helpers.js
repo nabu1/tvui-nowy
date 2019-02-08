@@ -15,7 +15,7 @@ export const days = () => {
     const dayName = weekDayNames[new Date(startOfDay).getDay()]
     const dayOfMonth = new Date(startOfDay).getDate()
     const monthName = monthNames[new Date(startOfDay).getMonth()]
-    const dayString = `${dayName  } ${  dayOfMonth  } ${  monthName}`
+    const dayString = `${dayName} ${dayOfMonth} ${monthName}`
 
     const dayObj = {
       text: dayString,
@@ -43,7 +43,7 @@ export const endHours = startHour => {
   return hours
 }
 
-export const email = text => {
+export const email = () => {
   emailjs
     .send('gmail', 'tv')
     .then(res => {

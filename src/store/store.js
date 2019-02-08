@@ -94,7 +94,7 @@ export default new Vuex.Store({
     },
     RESET_FAVORITES(state) {
       state.favorites = null
-    }
+    },
   },
   actions: {
     getSelectedPrograms(context) {

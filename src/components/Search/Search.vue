@@ -36,7 +36,7 @@ export default {
     },
     favoritesCount() {
       return this.$store.getters.getFavorites ? this.$store.getters.getFavorites.length : 0
-    }
+    },
   },
   mounted() {
     if (!localStorage.getItem('vuex_ft')) {

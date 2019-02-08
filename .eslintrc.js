@@ -28,7 +28,7 @@ module.exports = {
     'no-warning-comments': 'warn',
     'no-whitespace-before-property': 0,
     // 'no-trailing-spaces': 2,
-    'prefer-destructuring': 'warn',
+    'prefer-destructuring': 'off',
     'prefer-template': 'warn',
     'prettier/prettier': ['error'],
     // semi: ['error', 'never'],

@@ -21,7 +21,7 @@ export default {
       if (showFavorites) {
         return getFavorites || []
       }
-      else if (showCategories && categoryFiltered && categoryFiltered.length) {
+      if (showCategories && categoryFiltered && categoryFiltered.length) {
         return this.$store.getters.getCategoryFiltered
       }
 
@@ -44,7 +44,7 @@ export default {
           return el.id !== item.id
         })
       }
-      else {
+ else {
         const isPresent = favorites.some(el => {
           return el.id === item.id
         })
@@ -61,4 +61,3 @@ div {
   color: white;
 }
 </style>
-
