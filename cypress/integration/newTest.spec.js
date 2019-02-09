@@ -12,11 +12,11 @@ describe('I. Selection by hours', () => {
     .get("[data-test='btnResetFavorites']").as('btnResetFavorites')
   })
 
-  it('1. Entering nothing gets "Pt, 8 Luty" in results "Dzień" row', () => {
+  it('1. Entering nothing gets "Sob, 9 Luty" in results "Dzień" row', () => {
     cy.get('@btnSearch')
       .click()
       .get('tr:nth-child(1) > td:nth-child(2)', { timeout: 8000 })
-      .should('have.text', 'Pt, 8 Luty')
+      .should('have.text', 'Sob, 9 Luty')
   })
 
   it('2. Entering "Nie, 10 Luty" gets "Nie, 10 Luty" in results "Dzień" row', () => {
@@ -28,7 +28,7 @@ describe('I. Selection by hours', () => {
       .should('have.text', 'Nie, 10 Luty')
   })
 
-  it('3. Entering 23 in startHour gets results starting with "22" in "Czas" column', () => {
+  it.only('3. Entering 23 in startHour gets results starting with "22" in "Czas" column', () => {
     cy.get('@startHour')
     .select('23')
     .get('@btnSearch')
@@ -86,11 +86,10 @@ describe('II. Selection by categories', () => {
     .get("[data-test='btnResetAll']").as('btnResetAll')
     .get("[data-test='btnShow']").as('btnShow')
     .get("[data-test='btnResetFavorites']").as('btnResetFavorites')
-    .get("[data-test='table']").as('table')
   })
 
   it('1. Checking "Inne" gets "inne" as a category name in the 1st \
-         and last row of the table', () => {
+      and last row of the table', () => {
     cy.get('@day')
     .select('Pon 11 Luty')
     .get('@btnSearch')
@@ -106,7 +105,7 @@ describe('II. Selection by categories', () => {
   })
 
   it('2. Checking "Serial" and "Film" gets "film" or "serial" \
-              as a category name in the 1st and last row of the table', () => {
+      as a category name in the 1st and last row of the table', () => {
     cy.get('@day')
     .select('Wt 12 Luty')
     .get('@btnSearch')
@@ -123,38 +122,57 @@ describe('II. Selection by categories', () => {
     .contains('serial' || 'film')
     .should('exist')
   })
-
-  it.only('3. Checking "Serial" and "Film" gets "film" or "serial" \
-              as a category name in the 1st and last row of the table', () => {
-
-    cy.get("[data-test='hideModalFirstTime']")
-    .click()
-    .get('@day')
-    .select('Wt 12 Luty')
-    .get('@btnSearch')
-    .click()
-    .get('spinner').should('not.be.visible')
-    .get('#categories > div:nth-child(1) > label > span')  // Film
-    .click()
-    .get('#categories > div:nth-child(2) > label > span')  // Serial
-    .click()
-    //.get('#table > tbody > tr:first > td:nth-child(7)')
-
-    .get('#table')
-    .find('tr')
-    .eq(1)
-    .find('td')
-    .eq(6)
-    .contains('serial' || 'film')
-
-    .should('exist')
-    .get('#table > tbody > tr:last > td:nth-child(7)')
-    .contains('serial' || 'film')
-    .should('exist')
-  })
-
-
-
 })
 
 // #categories > div:nth-child(7) > label > span
+describe('III. Selection by hours and categories', () => {
+  beforeEach(() => {
+    cy.visit('http://localhost:8080')
+    .get("[data-test='day']").as('day')
+    .get("[data-test='startHour']").as('startHour')
+    .get("[data-test='endHour']").as('endHour')
+    .get("[data-test='textSearch']").as('textSearch')
+    .get("[data-test='btnSearch']").as('btnSearch')
+    .get("[data-test='btnResetAll']").as('btnResetAll')
+    .get("[data-test='btnShow']").as('btnShow')
+    .get("[data-test='btnResetFavorites']").as('btnResetFavorites')
+  })
+
+  it.skip('1. Entering "Pon, 11 Luty", checking "Serial" and "Inne" gets "serial" or "inne" \
+              as a category name in the 1st and last row of the table', () => {
+
+    const categories = new RegExp(/serial|inne/)
+
+
+
+    cy.get('[data-test="day"] > option')
+    .eq(5)
+    .then(element => cy.get('[data-test="day"]').select(element.val()))
+
+    .get('spinner').should('not.be.visible')
+
+    // .pause()
+
+    .get('#categories > div:nth-child(2) > label > span')
+    .click()
+    .get('#categories > div:nth-child(7) > label > span')
+    .click()
+
+    .get('#table > tbody > tr:first > td:nth-child(6)')
+    .then(($text) => {
+      if ($text === 'serial' || $text === 'inne') return true
+    })
+
+    //.contains(/serial|inne/)
+    //.should('match', /serial|inne/)
+    //.should('match', categories)
+    //.should('exist')
+
+    /* .get('#table > tbody > tr:last > td:nth-child(6)')
+    .contains(/serial|inne/)
+    .should('exist') */
+  })
+
+})
+
+

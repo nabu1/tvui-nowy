@@ -40,7 +40,7 @@ export default {
   },
   mounted() {
     if (!localStorage.getItem('vuex_ft')) {
-      this.$refs.modalFirstTime.show()
+      // this.$refs.modalFirstTime.show()   // todo: odkomentuj
       localStorage.setItem('vuex_ft', true)
     }
   },
