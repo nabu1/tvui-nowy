@@ -28,7 +28,7 @@ describe('I. Selection by hours', () => {
       .should('have.text', 'Nie, 10 Luty')
   })
 
-  it.only('3. Entering 23 in startHour gets results starting with "22" in "Czas" column', () => {
+  it('3. Entering 23 in startHour gets results starting with "22" in "Czas" column', () => {
     cy.get('@startHour')
     .select('23')
     .get('@btnSearch')
@@ -38,7 +38,7 @@ describe('I. Selection by hours', () => {
     .should('exist')
   })
 
-  it('4. Entering "Sob 9 Luty" and "6" as endHour gets results \
+  it.only('4. Entering "Sob 9 Luty" and "6" as endHour gets results \
           ending with "4" or "5" in "Czas" column', () => {
 
     cy.get('@day')
@@ -91,17 +91,14 @@ describe('II. Selection by categories', () => {
   it('1. Checking "Inne" gets "inne" as a category name in the 1st \
       and last row of the table', () => {
     cy.get('@day')
-    .select('Pon 11 Luty')
-    .get('@btnSearch')
-    .click()
-    .get('#categories > div:nth-child(7) > label > span')
-    .click()
-    .get('#table > tbody > tr:first > td:nth-child(7)')
-    .contains('inne')
-    .should('exist')
-    .get('#table > tbody > tr:last > td:nth-child(7)')
-    .contains('inne')
-    .should('exist')
+    .select('Pon 11 Luty').get('@btnSearch').click()
+    .get('#categories > div:nth-child(2) > label > span').click()  // serial
+    .get('#categories > div:nth-child(7) > label > span').click()  // inne
+
+    .get('#table > tbody > tr:first > td:nth-child(7)').contains(/inne|serial/).should('exist')
+    .get('#table > tbody > tr:first > td:nth-child(7)').contains(/film|sport|wiadomosci|rozrywka|dla dzieci/).should('not.exist')
+
+    .get('#table > tbody > tr:last > td:nth-child(7)').contains(/serial|inne/).should('exist')
   })
 
   it('2. Checking "Serial" and "Film" gets "film" or "serial" \
@@ -141,36 +138,7 @@ describe('III. Selection by hours and categories', () => {
   it.skip('1. Entering "Pon, 11 Luty", checking "Serial" and "Inne" gets "serial" or "inne" \
               as a category name in the 1st and last row of the table', () => {
 
-    const categories = new RegExp(/serial|inne/)
 
-
-
-    cy.get('[data-test="day"] > option')
-    .eq(5)
-    .then(element => cy.get('[data-test="day"]').select(element.val()))
-
-    .get('spinner').should('not.be.visible')
-
-    // .pause()
-
-    .get('#categories > div:nth-child(2) > label > span')
-    .click()
-    .get('#categories > div:nth-child(7) > label > span')
-    .click()
-
-    .get('#table > tbody > tr:first > td:nth-child(6)')
-    .then(($text) => {
-      if ($text === 'serial' || $text === 'inne') return true
-    })
-
-    //.contains(/serial|inne/)
-    //.should('match', /serial|inne/)
-    //.should('match', categories)
-    //.should('exist')
-
-    /* .get('#table > tbody > tr:last > td:nth-child(6)')
-    .contains(/serial|inne/)
-    .should('exist') */
   })
 
 })
