@@ -105,6 +105,28 @@ describe('II. Selection by categories', () => {
     .contains('inne')
     .should('exist')
   })
+
+  it.only('2. Checking "Serial" and "Film" gets "film" or "serial" \
+              as a category name in the 1st and last row of the table', () => {
+    cy.get('@day')
+    .select('Wt 12 Luty')
+    .get('@btnSearch')
+    .pause()
+    .click()
+    .get('#categories > div:nth-child(1) > label > span')
+    .click()
+    .get('#categories > div:nth-child(2) > label > span')
+    .click()
+    .get('#table > tbody > tr:first > td:nth-child(7)')
+    .contains('serial' || 'film')
+    .should('exist')
+    .get('#table > tbody > tr:last > td:nth-child(7)')
+    .contains('serial' || 'film')
+    .should('exist')
+  })
+
+
+
 })
 
 // #categories > div:nth-child(7) > label > span
