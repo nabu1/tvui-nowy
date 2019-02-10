@@ -214,3 +214,46 @@ describe('V. Selection by stations, categories and hours', () => {
   })
 
 })
+
+describe('VI. Selection by favorites, categories and hours', () => {
+  beforeEach(() => {
+    cy.visit('http://localhost:8080')
+    .get("[data-test='day']").as('day')
+    .get("[data-test='startHour']").as('startHour')
+    .get("[data-test='endHour']").as('endHour')
+    .get("[data-test='textSearch']").as('textSearch')
+    .get("[data-test='btnSearch']").as('btnSearch')
+  })
+
+  it.only('1. Entering "Wt, 12 Luty", startHour = 10, endHour = 14, \
+              checking "TVP1", "POLSAT" and "ATM Rozrywka" gets "TVP 1" \
+              and "ATM Rozrywka" as a stations names in the 1st and last \
+              row of the table', () => {
+
+      cy.visit('http://localhost:8080/stations')
+      .get("[data-test='stationsTvpTvn']").find('input').eq(1).click({force: true})
+      .get("[data-test='stationsCanal']").find('input').eq(2).click({force: true})
+      .get("[data-test='stationsDiscoveryNational']").find('input').eq(3).click({force: true})
+      .get("[data-test='btnOK']").click().wait(500)
+
+      .get('#categories > div:nth-child(2) > label > span').click().wait(500)
+      .get('#categories > div:nth-child(7) > label > span').click()
+
+      .get('@day').select('Wt 12 Luty')
+      .get('@startHour').select('10')
+      .get('@endHour').select('14')
+      .get('@btnSearch').click()
+
+      //.pause()
+
+      .get('#table > tbody > tr:first > td:nth-child(5)').dblclick()
+      .get('#table > tbody > tr:nth-child(4) > td:nth-child(7)').dblclick()
+
+
+      .get("[data-test='btnShow']").click().wait(500)
+
+      .get('#table > tbody > tr:first > td:nth-child(5)').contains(/Opowieść/).should('exist')
+      .get('#table > tbody > tr:last > td:nth-child(5)').contains(/Ostatni/).should('exist')
+  })
+
+})
