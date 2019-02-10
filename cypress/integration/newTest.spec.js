@@ -221,12 +221,12 @@ describe('VI. Selection by favorites, categories and hours', () => {
     .get("[data-test='day']").as('day')
     .get("[data-test='startHour']").as('startHour')
     .get("[data-test='endHour']").as('endHour')
-    .get("[data-test='textSearch']").as('textSearch')
     .get("[data-test='btnSearch']").as('btnSearch')
   })
 
   it.only('1. Entering "Wt, 12 Luty", startHour = 10, endHour = 14, \
-              checking "TVP2", "Canal+" and "Nat Geo People" and selects 2 programs \
+              checking "TVP2", "Canal+" and "Nat Geo People", checking \
+              "Serial" and "Inne", and selects 2 favorite programs, \
               doubleclicking on them. Gets you "Opowieść.." and "Ostatni", \
               once "Pokaż" button is clicked', () => {
 
@@ -246,14 +246,24 @@ describe('VI. Selection by favorites, categories and hours', () => {
 
       .get('#table > tbody > tr:first > td:nth-child(5)').dblclick()
       .get('#table > tbody > tr:nth-child(4) > td:nth-child(7)').dblclick()
-.pause()
+
       .get("[data-test='btnShow']").click().wait(500)
 
-      .get('#table > tbody > tr:first > td:nth-child(5)').contains(/Opowieść/).should('exist')
-      .get('#table > tbody > tr:last > td:nth-child(5)').contains(/Ostatni/).should('exist')
+      .get('#table > tbody > tr:first > td:nth-child(5)').should('exist')
+      .get('#table > tbody > tr:nth-child(2) > td:nth-child(5)').should('exist')
 
       .get("[data-test='btnResetFavorites']").click().wait(500)
       .get('#table > tbody > tr:first').should('not.exist')
+
+      .get("[data-test='btnResetAll']").click().wait(500)
+      .get('#table > tbody > tr:first').should('exist')
+      .get('@day').should('have.value', '')
+      .get('@startHour').should('have.value', '')
+      .get('@endHour').should('have.value', '')
+
+      //.pause()
+      .get('#categories > div:nth-child(2) > label > span').should('not.be.checked')
+      .get('#categories > div:nth-child(7) > label > span').should('not.be.checked')
   })
 
 })
