@@ -5,7 +5,6 @@ describe('I. Selection by hours', () => {
     .get("[data-test='day']").as('day')
     .get("[data-test='startHour']").as('startHour')
     .get("[data-test='endHour']").as('endHour')
-    .get("[data-test='textSearch']").as('textSearch')
     .get("[data-test='btnSearch']").as('btnSearch')
     .get("[data-test='btnResetAll']").as('btnResetAll')
     .get("[data-test='btnShow']").as('btnShow')
@@ -60,7 +59,6 @@ describe('II. Selection by categories', () => {
     .get("[data-test='day']").as('day')
     .get("[data-test='startHour']").as('startHour')
     .get("[data-test='endHour']").as('endHour')
-    .get("[data-test='textSearch']").as('textSearch')
     .get("[data-test='btnSearch']").as('btnSearch')
     .get("[data-test='btnResetAll']").as('btnResetAll')
     .get("[data-test='btnShow']").as('btnShow')
@@ -187,7 +185,7 @@ describe('V. Selection by stations, categories and hours', () => {
     .get("[data-test='btnSearch']").as('btnSearch')
   })
 
-  it.only('1. Entering "Wt, 12 Luty", startHour = 10, endHour = 14, \
+  it('1. Entering "Wt, 12 Luty", startHour = 10, endHour = 14, \
               checking "TVP1", "POLSAT" and "ATM Rozrywka" gets "TVP 1" \
               and "ATM Rozrywka" as a stations names in the 1st and last \
               row of the table', () => {
@@ -224,7 +222,7 @@ describe('VI. Selection by favorites, categories and hours', () => {
     .get("[data-test='btnSearch']").as('btnSearch')
   })
 
-  it.only('1. Entering "Wt, 12 Luty", startHour = 10, endHour = 14, \
+  it('1. Entering "Wt, 12 Luty", startHour = 10, endHour = 14, \
               checking "TVP2", "Canal+" and "Nat Geo People", checking \
               "Serial" and "Inne", and selects 2 favorite programs, \
               doubleclicking on them. Gets you "Opowieść.." and "Ostatni", \
@@ -257,13 +255,34 @@ describe('VI. Selection by favorites, categories and hours', () => {
 
       .get("[data-test='btnResetAll']").click().wait(500)
       .get('#table > tbody > tr:first').should('exist')
+
       .get('@day').should('have.value', '')
       .get('@startHour').should('have.value', '')
       .get('@endHour').should('have.value', '')
 
-      //.pause()
       .get('#categories > div:nth-child(2) > label > span').should('not.be.checked')
       .get('#categories > div:nth-child(7) > label > span').should('not.be.checked')
   })
 
+})
+
+describe('VII. Selection by text search, stations, categories and hours', () => {
+  beforeEach(() => {
+    cy.visit('http://localhost:8080')
+    .get("[data-test='day']").as('day')
+    .get("[data-test='startHour']").as('startHour')
+    .get("[data-test='endHour']").as('endHour')
+    .get("[data-test='btnSearch']").as('btnSearch')
+    .get("[data-test='textSearch']").as('textSearch')
+
+  })
+
+  it('1. Entering keyword "magazyn" to the text search box gets entries \
+              containing this word in the "title" column', () => {
+
+    cy.get("[data-test='textSearch']")
+    .type('magazyn').wait(2000)
+    .get('@btnSearch').click().wait(2000)
+    .get('#table > tbody > tr:nth-child(2) > td:nth-child(5)', { timeout: 6000 }).contains(/magazyn/i).should('exist')
+  })
 })
