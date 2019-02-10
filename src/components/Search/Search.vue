@@ -1,7 +1,6 @@
 <template src="./Search.html"></template>
 
 <script>
-import store from '../../store/store'
 import { days, endHours } from '../../services/helpers'
 import { CATEGORIES, HOURS } from '../../services/constants'
 
@@ -16,6 +15,7 @@ export default {
       days: days(),
       categoriesList: CATEGORIES,
       loading: this.$store.getters.getLoading,
+      // selected: 'Nie, 10 Luty'
     }
   },
   computed: {
@@ -32,7 +32,7 @@ export default {
       return HOURS
     },
     endHours() {
-      return endHours(store.getters.getStartHour || null)
+      return endHours(this.$store.getters.getDay, this.$store.getters.getStartHour)
     },
     favoritesCount() {
       return this.$store.getters.getFavorites ? this.$store.getters.getFavorites.length : 0

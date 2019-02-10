@@ -5,11 +5,9 @@ export default context => {
   let startHour = null
   const startOfDay = context.getters.getDay || new Date().setUTCHours(0, 0, 0, 0)
 
-  console.clear()
-
   if (!context.getters.getStartHour && (!context.getters.getDay || new Date(context.getters.getDay).getDate() === new Date().getDate())) {
     startHour = new Date().getHours()
-    console.log('%c startHour 1 = '+ startHour, 'color: white')
+    //console.log('%c startHour 1 = '+ startHour, 'color: white')
   }
   else {
     startHour = context.getters.getStartHour || 3
@@ -19,7 +17,7 @@ export default context => {
   //console.log('%c startHour = '+ startHour, 'color: white')
 
   const endHour = context.getters.getEndHour || 24
-  const start = startOfDay + startHour * 60 * 60 * 1000
+  const start = startOfDay + (startHour - 0.5) * 60 * 60 * 1000
   const end = startOfDay + endHour * 60 * 60 * 1000
 
   console.log('%c start = '+ new Date(start), 'color: yellow')
