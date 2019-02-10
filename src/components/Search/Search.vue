@@ -20,11 +20,9 @@ export default {
   },
   computed: {
     startHours() {
-      console.log('Tu computed() - startHours')
       return startHours(this.$store.getters.getDay, this.$store.getters.getEndHour)
     },
     endHours() {
-      console.log('Tu computed() - endHours')
       return endHours(this.$store.getters.getDay, this.$store.getters.getStartHour)
     },
     favoritesCount() {

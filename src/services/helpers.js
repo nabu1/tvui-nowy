@@ -51,7 +51,7 @@ export const startHours = (day, endHour) => {
 }
 
 export const endHours = (day, startHour) => {
-  console.log('%c startHour = ' + startHour, 'color: white')
+  // console.log('%c startHour = ' + startHour, 'color: white')
 
   if ((!day || new Date(day).getDate() === new Date().getDate()) ) {
     if (startHour) {
@@ -64,5 +64,5 @@ export const endHours = (day, startHour) => {
     return hoursArray(startHour, 25, true)
   }
 
-  return hoursArray(4, 25, true)
+  return hoursArray(3, 25, true)
 }
