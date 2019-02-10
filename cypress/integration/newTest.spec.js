@@ -226,9 +226,9 @@ describe('VI. Selection by favorites, categories and hours', () => {
   })
 
   it.only('1. Entering "Wt, 12 Luty", startHour = 10, endHour = 14, \
-              checking "TVP1", "POLSAT" and "ATM Rozrywka" gets "TVP 1" \
-              and "ATM Rozrywka" as a stations names in the 1st and last \
-              row of the table', () => {
+              checking "TVP2", "Canal+" and "Nat Geo People" and selects 2 programs \
+              doubleclicking on them. Gets you "Opowieść.." and "Ostatni", \
+              once "Pokaż" button is clicked', () => {
 
       cy.visit('http://localhost:8080/stations')
       .get("[data-test='stationsTvpTvn']").find('input').eq(1).click({force: true})
@@ -244,16 +244,16 @@ describe('VI. Selection by favorites, categories and hours', () => {
       .get('@endHour').select('14')
       .get('@btnSearch').click()
 
-      //.pause()
-
       .get('#table > tbody > tr:first > td:nth-child(5)').dblclick()
       .get('#table > tbody > tr:nth-child(4) > td:nth-child(7)').dblclick()
-
-
+.pause()
       .get("[data-test='btnShow']").click().wait(500)
 
       .get('#table > tbody > tr:first > td:nth-child(5)').contains(/Opowieść/).should('exist')
       .get('#table > tbody > tr:last > td:nth-child(5)').contains(/Ostatni/).should('exist')
+
+      .get("[data-test='btnResetFavorites']").click().wait(500)
+      .get('#table > tbody > tr:first').should('not.exist')
   })
 
 })
