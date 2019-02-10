@@ -16,16 +16,26 @@ describe('I. Selection by hours', () => {
     cy.get('@btnSearch')
       .click()
       .get('tr:nth-child(1) > td:nth-child(2)', { timeout: 8000 })
-      .should('have.text', 'Sob, 9 Luty')
+      .should('have.text', 'Nie, 10 Luty')
   })
 
-  it('2. Entering "Nie, 10 Luty" gets "Nie, 10 Luty" in results "Dzień" row', () => {
+  it.only('2. Entering "Nie, 10 Luty" gets "Nie, 10 Luty" in results "Dzień" row', () => {
+     const click = $el => $el.click()
+
       cy.get('@day')
-      .select('Nie 10 Luty')
+      .wait(1500)
+      .select('Pon 11 Luty')
+      .wait(1500)
       .get('@btnSearch')
-      .click()
+      .wait(1500)
+      //.click()
+      .pipe(click)
+
+      //.get('spinner').should('not.be.visible')
+
       .get('tr:nth-child(1) > td:nth-child(2)', { timeout: 5000 })
-      .should('have.text', 'Nie, 10 Luty')
+      .should('be.visible')
+      .should('have.text', 'Pon, 11 Luty')
   })
 
   it('3. Entering 23 in startHour gets results starting with "22" in "Czas" column', () => {
@@ -38,11 +48,11 @@ describe('I. Selection by hours', () => {
     .should('exist')
   })
 
-  it.only('4. Entering "Sob 9 Luty" and "6" as endHour gets results \
+  it('4. Entering "Sob 9 Luty" and "6" as endHour gets results \
           ending with "4" or "5" in "Czas" column', () => {
 
     cy.get('@day')
-    .select('Sob 9 Luty')
+    .select('Pon 11 Luty')
     .get('@endHour')
     .select('6')
     .get('@btnSearch')
@@ -135,10 +145,30 @@ describe('III. Selection by hours and categories', () => {
     .get("[data-test='btnResetFavorites']").as('btnResetFavorites')
   })
 
-  it.skip('1. Entering "Pon, 11 Luty", checking "Serial" and "Inne" gets "serial" or "inne" \
+  it('1. Entering "Pon, 11 Luty", checking "Serial" and "Inne" gets "serial" or "inne" \
               as a category name in the 1st and last row of the table', () => {
 
+      cy.get('@day')
+      .pause()
 
+      .select('Wt 12 Luty')
+      .get('@btnSearch')
+      .click()
+
+      .get('spinner').should('not.be.visible')
+
+      .get('#categories > div:nth-child(1) > label > span')  // Film
+      .click()
+      .get('#categories > div:nth-child(2) > label > span')  // Serial
+      .click()
+
+      .get('#table > tbody > tr:first > td:nth-child(7)')
+      .contains('serial' || 'film')
+      .should('exist')
+
+      .get('#table > tbody > tr:last > td:nth-child(7)')
+      .contains('film' ||'serial')
+      .should('exist')
   })
 
 })
