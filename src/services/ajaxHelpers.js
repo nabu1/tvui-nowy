@@ -11,7 +11,7 @@ export default context => {
   }
   else {
     startHour = context.getters.getStartHour || 3
-    console.log('%c startHour 2 = '+ startHour, 'color: white')
+    console.log('%c startHour 2 = ' + startHour, 'color: white')
   }
 
   //console.log('%c startHour = '+ startHour, 'color: white')
@@ -20,11 +20,12 @@ export default context => {
   const start = startOfDay + (startHour - 0.5) * 60 * 60 * 1000
   const end = startOfDay + endHour * 60 * 60 * 1000
 
-  console.log('%c start = '+ new Date(start), 'color: yellow')
-  console.log('%c end = '+ new Date(end), 'color: yellow')
+  console.log('%c start = ' + new Date(start), 'color: yellow')
+  console.log('%c end = ' + new Date(end), 'color: yellow')
 
-
-  const categories = context.getters.getCategories && context.getters.getCategories.length ? JSON.stringify(context.getters.getCategories) : null
+  let categories = context.getters.getCategories
+  //const categories = context.getters.getCategories && context.getters.getCategories.length ? JSON.stringify(context.getters.getCategories) : null
+  categories = categories && categories.length ? JSON.stringify(categories) : null
 
   let stations = context.getters.getStations
   stations = stations ? encodeURIComponent(JSON.stringify(stations)) : null
@@ -48,7 +49,7 @@ export default context => {
   }
 
   const urlString = LITERALS.TV_LIST_PREFIX + query + LITERALS.TV_LIST_SUFFIX
-  console.log('%c urlString = '+ urlString, 'color: lime')
+  console.log('%c urlString = ' + urlString, 'color: lime')
 
   return urlString
 }

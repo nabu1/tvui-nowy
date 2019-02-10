@@ -1,8 +1,8 @@
 <template src="./Search.html"></template>
 
 <script>
-import { days, endHours } from '../../services/helpers'
-import { CATEGORIES, HOURS } from '../../services/constants'
+import { days, startHours, endHours } from '../../services/helpers'
+import { CATEGORIES } from '../../services/constants'
 
 export default {
   data() {
@@ -20,18 +20,11 @@ export default {
   },
   computed: {
     startHours() {
-      const day = this.$store.getters.getDay
-      const startHour = this.$store.getters.getStartHour
-      const endHour = this.$store.getters.getEndHour
-
-      if ((!day || new Date(day).getDate() === new Date().getDate()) && !startHour && !endHour) {
-        const newHours = HOURS.slice(new Date().getHours() - 2)
-        newHours.unshift(HOURS[0])
-        return newHours
-      }
-      return HOURS
+      console.log('Tu computed() - startHours')
+      return startHours(this.$store.getters.getDay, this.$store.getters.getEndHour)
     },
     endHours() {
+      console.log('Tu computed() - endHours')
       return endHours(this.$store.getters.getDay, this.$store.getters.getStartHour)
     },
     favoritesCount() {

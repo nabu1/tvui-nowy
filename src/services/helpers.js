@@ -27,35 +27,10 @@ export const days = () => {
   return daysForSelectBox
 }
 
-export const endHours = (day, startHour) => {
-  let start = 3
+const hoursArray = (start, end, isEnd) => {
+  const hours = []
 
-  console.log('_____________________________________')
-
-  console.log('%c day = ' + day, 'color: violet')
-  console.log('%c startHour = ' + startHour, 'color: violet')
-
-  console.log('%c new Date(day) = ' + new Date(day).toLocaleDateString(), 'color: violet')
-  console.log('%c new Date() = ' + new Date().toLocaleDateString(), 'color: violet')
-
-  const today = new Date(day).toLocaleDateString() === new Date().toLocaleDateString()
-  console.log('%c today = ' + today, 'color: violet')
-
-  const currentHour = new Date().getHours()
-  console.log('%c currentHour = ' + currentHour, 'color: violet')
-
-  if (!day || today) {
-    start = startHour || currentHour - 1
-  }
-  else {
-    start = startHour || 3
-  }
-
-  console.log('%c start = ' + start, 'color: violet')
-
-  const hours = [{ text: 'Godzina Do', value: null }]
-
-  for (let index = start + 1; index < 25; index++) {
+  for (let index = start + isEnd; index < end; index++) {
     const hour = {
       text: index,
       value: index,
@@ -63,8 +38,31 @@ export const endHours = (day, startHour) => {
     hours.push(hour)
   }
 
-  // console.log('%c hours = ', 'color: violet')
-  //console.table(hours)
-
+  const lineFirst = isEnd ? { text: 'Godzina Do', value: null } : { text: 'Godzina Od', value: null }
+  hours.unshift(lineFirst)
   return hours
+}
+
+export const startHours = (day, endHour) => {
+  if ((!day || new Date(day).getDate() === new Date().getDate()) && !endHour) {
+    return hoursArray(new Date().getHours(), 24, false)
+  }
+  return hoursArray(3, 24, false)
+}
+
+export const endHours = (day, startHour) => {
+  console.log('%c startHour = ' + startHour, 'color: white')
+
+  if ((!day || new Date(day).getDate() === new Date().getDate()) ) {
+    if (startHour) {
+      return hoursArray(startHour, 25, true)
+    }
+    return hoursArray(new Date().getHours(), 25, true)
+  }
+
+  if (startHour) {
+    return hoursArray(startHour, 25, true)
+  }
+
+  return hoursArray(4, 25, true)
 }
