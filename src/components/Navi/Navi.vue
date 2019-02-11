@@ -6,7 +6,7 @@ import store from '../../store/store'
 export default {
   data() {
     return {
-      showBadge: false,
+      showBadge: false
     }
   },
   computed: {
@@ -19,6 +19,9 @@ export default {
         return stations.join(', ').length > 70 ? `${stations.join(', ').slice(0, 70)} ...` : stations.join(', ')
       }
     },
+    documents() {
+      return store.getters.getDocumentsCount
+    }
   },
 }
 </script>
@@ -34,4 +37,8 @@ body {
 .stations {
   color: yellow;
 }
+.documents {
+  color: lime;
+}
+
 </style>
