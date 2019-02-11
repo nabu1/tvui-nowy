@@ -1,7 +1,5 @@
 /* eslint-disable*/
-import { dayStartHourEndHour, category, station } from './cyhelper'
-import { CATEGORIES } from '../../src/services/constants'
-
+import { dayAndHours, category, station } from './cyhelper'
 
 describe('I. Selection by hours', () => {
   beforeEach(() => {
@@ -89,12 +87,13 @@ describe('II. Selection by categories', () => {
 // #categories > div:nth-child(7) > label > span
 describe('III. Selection by hours and categories', () => {
   beforeEach(() => {
+    /*
     cy.visit('http://localhost:8080')
     .get("[data-test='day']").as('day')
     .get("[data-test='startHour']").as('startHour')
     .get("[data-test='endHour']").as('endHour')
     .get("[data-test='btnSearch']").as('btnSearch')
-
+ */
     // .get("[data-test='textSearch']").as('textSearch')
     // .get("[data-test='btnResetAll']").as('btnResetAll')
     // .get("[data-test='btnShow']").as('btnShow')
@@ -104,28 +103,30 @@ describe('III. Selection by hours and categories', () => {
   it.only('1. Entering "Pon, 11 Luty", checking "Serial" and "Inne" gets "serial" or "inne" \
           as a category name in the 1st and last row of the table', () => {
 
-      //cy.visit('http://localhost:8080/stations')
-      cy.route('/stations')
-
+      dayAndHours('Wt 12 Luty', '3', '5', 5000)
       cy.pause()
-      station('TvpTvn', 0)
-      station('Polsat', 1)
-      station('Polskie', 2)
-      // .get("[data-test='stationsTvpTvn']").find('input').eq(0).click({force: true})
-      // .get("[data-test='stationsPolsat']").find('input').eq(1).click({force: true})
-      // .get("[data-test='stationsPolskie']").find('input').eq(2).click({force: true})
-      // .get("[data-test='btnOK']").click()
-      cy.get("[data-test='btnOK']").click().wait(500)
-
-      dayStartHourEndHour('Wt 12 Luty', '3', '5')
 
       category(1)
       category(2)
       category(3)
+      cy.pause()
 
-      .get('#table > tbody > tr:first > td:nth-child(7)', { timeout: 6000 }).contains('film').should('exist')
-      .get('#table > tbody > tr:nth-child(4) > td:nth-child(7)').contains('serial').should('exist')
+      cy.visit('http://localhost:8080/stations')
+      station('TvpTvn', 0)
+      station('Polsat', 1)
+      station('Polskie', 2)
+      cy.pause()
+      cy.get("[data-test='btnOK']").click()
+      //cy.pause()
 
+
+
+
+
+      //cy.get('#table > tbody > tr:first > td:nth-child(7)', { timeout: 6000 }).contains('rozrywka').should('exist')
+      //.get('#table > tbody > tr:nth-child(4) > td:nth-child(7)').contains('inne').should('exist')
+
+      /*
       cy.get('#table > tbody > tr > td:nth-child(7)')  // fixme
       .each(($el, index, $list) => {
         cy.wrap($el).invoke('text').then((text) => {
@@ -133,6 +134,7 @@ describe('III. Selection by hours and categories', () => {
           if(text !== 'rozrywka') throw new Error('nie rozrywka')
         })
       })
+      */
   })
 
   it('2. Entering "Wt, 12 Luty", startHour = 10, endHour = 14, \
