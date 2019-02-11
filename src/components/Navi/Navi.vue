@@ -16,7 +16,7 @@ export default {
     stations() {
       const stations = store.getters.getStations
       if (stations) {
-        return stations.join(', ').length > 70 ? `${stations.join(', ').slice(0, 70)} ...` : stations.join(', ')
+        return stations.join(', ').length > 63 ? `${stations.join(', ').slice(0, 63)} ...` : stations.join(', ')
       }
     },
     documents() {
