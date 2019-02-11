@@ -21,7 +21,7 @@ export default {
       this.$store.dispatch('setStations', stations)
     },
     onOK() {
-      this.$store.dispatch('getSelectedPrograms')
+      // this.$store.dispatch('getSelectedPrograms')
       this.$router.push('/')
     },
     resetStations() {
