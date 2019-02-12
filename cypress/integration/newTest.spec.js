@@ -28,9 +28,9 @@ describe('II. Selection by hours and categories', () => {
   it('1. Selecting "Śr 13 Luty", startHour = "10", endHour="12", \
           checking "Serial" and "Inne", gets "serial" in the first row \
           and "inne" as a category name, in the last one. \
-          There is over 450 documents returned', () => {
+          There is over 100 documents returned', () => {
 
-    dayAndHours('Śr 13 Luty', '7', '10')
+    dayAndHours('Śr 13 Luty', '10', '12')
     cy.wait(5000)
     cy.get("[data-test='btnSearch']").click()
 
@@ -39,7 +39,7 @@ describe('II. Selection by hours and categories', () => {
 
     cy.get('#table > tbody > tr:first > td:nth-child(7)').contains('inne').should('exist')
     .get('#table > tbody > tr:last > td:nth-child(7)').contains('serial').should('exist')
-    .get('#table > tbody > tr').its('length').should('be.gte', 450)
+    .get('#table > tbody > tr').its('length').should('be.gte', 100)
 
   })
 
@@ -57,8 +57,7 @@ describe('II. Selection by hours and categories', () => {
 
     cy.get('#table > tbody > tr:first > td:nth-child(7)').contains('sport').should('exist')
     .get('#table > tbody > tr:last > td:nth-child(7)').contains('wiadomosci').should('exist')
-    .get('#table > tbody > tr').its('length').should('be.gte', 170)
-    .get('#table > tbody > tr').its('length').should('be.lte', 180)
+    .get('#table > tbody > tr').its('length').should('be.gte', 50)
 
   })
 })
@@ -107,7 +106,7 @@ describe('V. Selection by stations, categories and hours', () => {
       cy.get("[data-test='btnSearch']").click()
 
       .get('#table > tbody > tr:first > td:nth-child(7)').contains('serial').should('exist')
-      .get('#table > tbody > tr:nth-child(4) > td:nth-child(7)').contains('inne').should('exist')
+      .get('#table > tbody > tr:nth-child(12) > td:nth-child(7)').contains('inne').should('exist')
 
       .get('#table > tbody > tr:first > td:nth-child(3)').contains('TVP 1').should('exist')
       .get('#table > tbody > tr:last > td:nth-child(3)').contains('Nat Geo People HD').should('exist')
@@ -162,14 +161,14 @@ describe('VI. Selection by favorites, categories and hours', () => {
 })
 
 describe('VII. Selection by text search, stations, categories and hours', () => {
-  it.only('1. Entering keyword "magazyn" to the text search box gets entries \
+  it('1. Entering keyword "komed" to the text search box gets entries \
       containing this word in the "title" column', () => {
 
     cy.visit('http://localhost:8080')
     .get("[data-test='textSearch']")
     .type('komed')
     .get("[data-test='btnSearch']").click().wait(5000)
-    .get('#table > tbody > tr:first > td:nth-child(6)').contains(/komedi/i).should('exist')
-    .get('#table > tbody > tr:last > td:nth-child(6)').contains(/komedi/i).should('exist')
+    .get('#table > tbody > tr:first > td:nth-child(6)').contains(/komed/i).should('exist')
+    .get('#table > tbody > tr:last > td:nth-child(6)').contains(/komed/i).should('exist')
   })
 })
