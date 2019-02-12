@@ -83,7 +83,7 @@ export default {
       this.day = null
       this.startHour = null
       this.endHour = null
-      this.categories = null
+      this.categories = []
       this.textSearch = null
       this.$store.dispatch('resetState')
     },
