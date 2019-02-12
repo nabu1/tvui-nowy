@@ -11,7 +11,7 @@ function initialState() {
     day: null,
     startHour: null,
     endHour: null,
-    stations: null,
+    stations: [],
     categories: [],
     todaysPrograms: null,
     selectedPrograms: null,
