@@ -22,10 +22,13 @@ export default {
         return getFavorites || []
       }
       if (showCategories && categoryFiltered && categoryFiltered.length) {
+        console.log('%c showCategories = ' + showCategories, 'color: yellow')
         return this.$store.getters.getCategoryFiltered
       }
 
+      console.log('%c todaysPrograms = ' + todaysPrograms.length, 'color: yellow')
       return todaysPrograms
+
     },
     loading() {
       return this.$store.getters.getLoading
