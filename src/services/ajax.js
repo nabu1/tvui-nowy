@@ -27,6 +27,7 @@ export const ajaxFindText = (context, text) => {
     .get(urlFindText)
     .then(res => {
       console.log('%c res.data = ' + res.data.length, 'color: white')
+      context.commit('GET_DOCUMENTS_COUNT', res.data.length)
       context.commit('SHOW_CATEGORIES', false)
       context.commit('AJAX_FIND_TEXT', res.data)
     })
