@@ -19,8 +19,13 @@ export default context => {
   //const start = startOfDay + startHour * 60 * 60 * 1000
   //console.log('%c new Date().getMinutes() = ' + new Date().getMinutes(), 'color: white')
 
-  const start = startOfDay + startHour * 60 * minutes + (new Date().getMinutes() - 30) * minutes
+  //const start = startOfDay + startHour * 60 * minutes + (new Date().getMinutes() - 30) * minutes
+  const start = startOfDay + startHour * 60 * minutes - 30 * minutes
+
+  console.log('%c startHour = ' + startHour, 'color: orange')
   console.log('%c start = ' + new Date(start), 'color: orange')
+
+
   console.log('%c new Date().getMinutes() - 30 = ' + (new Date().getMinutes() - 30), 'color: white')
 
   const end = startOfDay + endHour * 60 * minutes
