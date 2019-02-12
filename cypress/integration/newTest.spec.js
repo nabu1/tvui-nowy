@@ -1,16 +1,15 @@
 /* eslint-disable*/
-import { dayAndHours, category, station } from './cyhelper'
+import { dayAndHours, category, station, tableCell } from './cyhelper'
 
 describe('I. Selection by hours', () => {
-  it('1. Entering nothing gets "Śr 13 Luty" in last row and 23rd hour in the one', () => {
+  it.only('1. Entering nothing gets "Śr 13 Luty" in last row and 23rd hour in the one', () => {
 
     dayAndHours('Śr 13 Luty', '', '')
     cy.wait(5000)
     cy.get("[data-test='btnSearch']").click()
-      .get('#table > tbody > tr:first > td:nth-child(4)').contains(/23.+/).should('exist')
-      //.get('#table > tbody > tr:first > td:nth-child(4)').should('contain', /23/)
-      .get('#table > tbody > tr:last > td:nth-child(2)').should('have.text', 'Śr 13 Luty')
-  })
+      .get(tableCell(1, 4)).contains(/23.+/).should('exist')
+      .get(tableCell('last', 2)).should('have.text', 'Śr 13 Luty')
+    })
 
   it('2. Entering "Śr 13 Luty", "7" as startHour,  \
           "10" as endHour gest "6" or "7"in the first rows "Czas" column \
