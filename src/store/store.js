@@ -15,7 +15,7 @@ function initialState() {
     categories: [],
     todaysPrograms: null,
     selectedPrograms: null,
-    categoryFiltered: null,
+    categoryFiltered: [],
     loading: false,
     favorites: null,
     showFavorites: false,

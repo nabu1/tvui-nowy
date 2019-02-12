@@ -38,7 +38,7 @@ export default {
   methods: {
     categorySelected(categories) {
       console.log('%c ___________________', 'color: violet')
-      console.log('%c categories = ' + categories, 'color: violet')
+      console.log('%c categories = ' + JSON.stringify(categories), 'color: violet')
       console.log('%c typeof categories = ' + typeof categories, 'color: violet')
       console.log('%c categories = ' + Array.isArray(categories), 'color: violet')
 
