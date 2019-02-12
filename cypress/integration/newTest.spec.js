@@ -167,9 +167,9 @@ describe('VII. Selection by text search, stations, categories and hours', () => 
 
     cy.visit('http://localhost:8080')
     .get("[data-test='textSearch']")
-    .type('magazyn')
-    .pause()
-    .get("[data-test='btnShow']").click().wait(5000)
-    .get('#table > tbody > tr:nth-child(2) > td:nth-child(5)', { timeout: 6000 }).contains(/magazyn/i).should('exist')
+    .type('komed')
+    .get("[data-test='btnSearch']").click().wait(5000)
+    .get('#table > tbody > tr:first > td:nth-child(6)').contains(/komedi/i).should('exist')
+    .get('#table > tbody > tr:last > td:nth-child(6)').contains(/komedi/i).should('exist')
   })
 })
