@@ -116,7 +116,7 @@ describe('V. Selection by stations, categories and hours', () => {
 })
 
 describe('VI. Selection by favorites, categories and hours', () => {
-  it.only('1. Entering "Śr 13 Luty", startHour = 13, endHour = 17, \
+  it('1. Entering "Śr 13 Luty", startHour = 13, endHour = 17, \
               checking "TVP2", "Canal+ Film" and "Nat Geo People", checking \
               "Serial" and "Inne", and selects 2 favorite programs, \
               doubleclicking on them. Gets you "Opowieść.." and "Ostatni", \
@@ -162,22 +162,14 @@ describe('VI. Selection by favorites, categories and hours', () => {
 })
 
 describe('VII. Selection by text search, stations, categories and hours', () => {
-  beforeEach(() => {
+  it.only('1. Entering keyword "magazyn" to the text search box gets entries \
+      containing this word in the "title" column', () => {
+
     cy.visit('http://localhost:8080')
-    .get("[data-test='day']").as('day')
-    .get("[data-test='startHour']").as('startHour')
-    .get("[data-test='endHour']").as('endHour')
-    .get("[data-test='btnSearch']").as('btnSearch')
-    .get("[data-test='textSearch']").as('textSearch')
-
-  })
-
-  it('1. Entering keyword "magazyn" to the text search box gets entries \
-              containing this word in the "title" column', () => {
-
-    cy.get("[data-test='textSearch']")
-    .type('magazyn').wait(2000)
-    .get('@btnSearch').click().wait(2000)
+    .get("[data-test='textSearch']")
+    .type('magazyn')
+    .pause()
+    .get("[data-test='btnShow']").click().wait(5000)
     .get('#table > tbody > tr:nth-child(2) > td:nth-child(5)', { timeout: 6000 }).contains(/magazyn/i).should('exist')
   })
 })
