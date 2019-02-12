@@ -2,22 +2,17 @@
 import { dayAndHours, category, station } from './cyhelper'
 
 describe('I. Selection by hours', () => {
-  beforeEach(() => {
-    cy.visit('http://localhost:8080')
-    .get("[data-test='day']").as('day')
-    .get("[data-test='startHour']").as('startHour')
-    .get("[data-test='endHour']").as('endHour')
-    .get("[data-test='btnSearch']").as('btnSearch')
-    .get("[data-test='btnResetAll']").as('btnResetAll')
-    .get("[data-test='btnShow']").as('btnShow')
-    .get("[data-test='btnResetFavorites']").as('btnResetFavorites')
-  })
 
-  it('1. Entering nothing gets "Nie, 10 Luty" in results "Dzień" row', () => {
-    cy.get('@btnSearch')
-      .click()
-      .get('tr:nth-child(1) > td:nth-child(2)', { timeout: 8000 })
-      .should('have.text', 'Nie, 10 Luty')
+  it.only('1. Entering nothing gets "Nie, 10 Luty" in results "Dzień" row', () => {
+
+    dayAndHours('Śr 13 Luty', '', '')
+    cy.wait(5000)
+    //cy.pause()
+    cy.get("[data-test='btnSearch']").click()
+      .get('tr:last > td:nth-child(2)')
+      //.get('tr:nth-child(1) > td:nth-child(2)')
+      //.should('have.text', 'Wt 12 Luty')
+      .should('have.text', 'Śr 13 Luty')
   })
 
   it('2. Entering "Nie, 10 Luty" gets "Nie, 10 Luty" in results "Dzień" row', () => {
@@ -100,7 +95,7 @@ describe('III. Selection by hours and categories', () => {
     // .get("[data-test='btnResetFavorites']").as('btnResetFavorites')
   })
 
-  it.only('1. Entering "Pon, 11 Luty", checking "Serial" and "Inne" gets "serial" or "inne" \
+  it('1. Entering "Pon, 11 Luty", checking "Serial" and "Inne" gets "serial" or "inne" \
           as a category name in the 1st and last row of the table', () => {
 
       dayAndHours('Wt 12 Luty', '3', '5', 5000)

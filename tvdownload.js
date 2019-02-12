@@ -128,7 +128,7 @@ const kanal = (day, page, channelFrom, channelTo) => {
 
           hours = hours > 23 ? hours - 24 : hours
 
-          let timestamp = timestampTodayMidnight + milliseconds + parseInt(Math.random() * 1000)
+          let timestamp = timestampTodayMidnight + milliseconds)
 
           const dateTimestamp = new Date(timestamp)
             .toISOString()
@@ -140,7 +140,7 @@ const kanal = (day, page, channelFrom, channelTo) => {
           const dayName = weekDayNames[new Date(date).getDay()]
           const dayOfMonth = new Date(date).getDate()
           const monthName = monthNames[new Date(date).getMonth()]
-          const dayString = dayName + ', ' + dayOfMonth + ' ' + monthName
+          const dayString = dayName + ' ' + dayOfMonth + ' ' + monthName
 
           const link =
             '<a href="https://programtv.onet.pl' +
@@ -237,5 +237,5 @@ UWAGA !!
 
 
   git reset --hard 2b8c4977513cda292de67e37469e5e3af991b7bf
-  
+
   */

@@ -1,9 +1,9 @@
-export const dayAndHours = (day, startHour, endHour, timeout = 5000) => {
+export const dayAndHours = (day, startHour, endHour) => {
   cy.visit('http://localhost:8080')
     .get("[data-test='day']").select(day)
     .get("[data-test='startHour']").select(startHour)
     .get("[data-test='endHour']").select(endHour)
-    .get("[data-test='btnSearch']").click().wait(timeout)
+
 }
 
 export const station = (groupName, stationIndex ) => {
