@@ -63,28 +63,42 @@ describe('II. Selection by hours and categories', () => {
 
 describe('IV. Selection by stations and hours', () => {
 
-  it('1. Entering "Śr 13 Luty", startHour = 10, endHour = 14, \
-              checking "TVP1", "POLSAT" and "ATM Rozrywka" gets "TVP 1" \
-              and "ATM Rozrywka" as a stations names in the 1st and last \
-              row of the table', () => {
+  it.only('1. Entering "Śr 13 Luty", startHour = 10, endHour = 14, \
+              checking "TVP1", "POLSAT" and "ATM Rozrywka" gets \
+              "TVP 1" and "ATM Rozrywka", as stations names \
+              in the 1st and last row of the table', () => {
 
       cy.visit('http://localhost:8080/stations')
       station('TvpTvn', 0)
       station('Polsat', 1)
       station('Polskie', 2)
-      cy.get("[data-test='btnOK']").click().wait(1000)
+      cy.get("[data-test='btnOK']").click().wait(2000)
 
       dayAndHours('Śr 13 Luty', '10', '14')
-      cy.wait(500)
-      cy.get("[data-test='btnSearch']").click()
+      cy.wait(2000)
+      cy.get("[data-test='btnSearch']").click().wait(4000)
 
       cy.get(tableCell(1, 3)).contains('POLSAT').should('exist')
       .get(tableCell(2, 3)).contains('TVP 1').should('exist')
+
+      cy.get('#table > tbody > tr > td:nth-child(3)')
+
+      .each(($el, index, $list) => {
+        cy.wrap($el).invoke('text').then(text => {
+          //cy.log(text)
+
+          if(text !== 'TVP 1' && text !== 'POLSAT' && text !== 'ATM Rozrywka') {
+            cy.log(text)
+            throw new Error('Incorrect station')
+          }
+
+        })
+      }).should('exist')
     })
 })
 
 describe('V. Selection by stations, categories and hours', () => {
-  it.only('1. Entering "Śr 13 Luty", startHour = 9, endHour = 13, \
+  it('1. Entering "Śr 13 Luty", startHour = 9, endHour = 13, \
               checking "Serial" and "Inne" as categories and \
               "TVP 1", "CANAL+ Film" and "Nat Geo People HD" as stations, \
               gets "TVP 1" and "Nat Geo People HD" as a stations names \
@@ -154,7 +168,7 @@ describe('VI. Selection by favorites, categories and hours', () => {
 })
 
 describe('VII. Selection by text search, stations, categories and hours', () => {
-  it.only('1. Entering keyword "komed" to the text search box gets entries \
+  it('1. Entering keyword "komed" to the text search box gets entries \
       containing this word in the "title" column', () => {
 
     cy.visit('http://localhost:8080')

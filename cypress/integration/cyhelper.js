@@ -16,12 +16,25 @@ export const station = (groupName, stationIndex ) => {
 }
 
 export const tableCell = (tr, td) => {
-
   if (typeof tr === 'string') {
-    const query = '#table > tbody > tr:' + tr + ' > td:nth-child(' + td + ')'
-    cy.log(query)
-    return query
+    return '#table > tbody > tr:' + tr + ' > td:nth-child(' + td + ')'
   }
 
   return '#table > tbody > tr:nth-child(' + tr + ') > td:nth-child(' + td + ')'
 }
+
+
+/*
+     cy.get('#table > tbody > tr > td:nth-child(3)')
+     .each(($el, index, $list) => {
+       cy.wrap($el).invoke('text').then(text => {
+         //cy.log(text)
+
+         if(text !== 'TVP 1' && text !== 'POLSAT' && text !== 'ATM Rozrywka') {
+           cy.log(text)
+           throw new Error('Incorrect station')
+         }
+
+       })
+     })
+*/
