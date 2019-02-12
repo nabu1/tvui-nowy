@@ -36,5 +36,5 @@ export const tableCell = (tr, td) => {
          }
 
        })
-     })
+     }).should('exist')
 */

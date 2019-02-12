@@ -1,4 +1,5 @@
 /* eslint-disable*/
+/// <reference types="Cypress" />
 import { dayAndHours, category, station, tableCell } from './cyhelper'
 
 describe('I. Selection by hours', () => {
@@ -64,9 +65,9 @@ describe('II. Selection by hours and categories', () => {
 describe('IV. Selection by stations and hours', () => {
 
   it.only('1. Entering "Śr 13 Luty", startHour = 10, endHour = 14, \
-              checking "TVP1", "POLSAT" and "ATM Rozrywka" gets \
-              "TVP 1" and "ATM Rozrywka", as stations names \
-              in the 1st and last row of the table', () => {
+      checking "TVP1", "POLSAT" and "ATM Rozrywka" gets \
+      "TVP 1" and "ATM Rozrywka", as stations names \
+      in the 1st and last row of the table', () => {
 
       cy.visit('http://localhost:8080/stations')
       station('TvpTvn', 0)
@@ -74,26 +75,23 @@ describe('IV. Selection by stations and hours', () => {
       station('Polskie', 2)
       cy.get("[data-test='btnOK']").click().wait(2000)
 
-      dayAndHours('Śr 13 Luty', '10', '14')
+      dayAndHours('Śr 13 Luty', '10', '24')
       cy.wait(2000)
-      cy.get("[data-test='btnSearch']").click().wait(4000)
+      cy.get("[data-test='btnSearch']").click().wait(500)
 
-      cy.get(tableCell(1, 3)).contains('POLSAT').should('exist')
-      .get(tableCell(2, 3)).contains('TVP 1').should('exist')
 
       cy.get('#table > tbody > tr > td:nth-child(3)')
-
       .each(($el, index, $list) => {
         cy.wrap($el).invoke('text').then(text => {
           //cy.log(text)
 
           if(text !== 'TVP 1' && text !== 'POLSAT' && text !== 'ATM Rozrywka') {
-            cy.log(text)
+            //cy.log(text)
             throw new Error('Incorrect station')
           }
-
         })
       }).should('exist')
+
     })
 })
 
@@ -172,11 +170,25 @@ describe('VII. Selection by text search, stations, categories and hours', () => 
       containing this word in the "title" column', () => {
 
     cy.visit('http://localhost:8080')
-    .get("[data-test='textSearch']")
-    .type('komed')
-    .get("[data-test='btnSearch']").click().wait(5000)
+    .get("[data-test='textSearch']").type('komed').wait(3000)
+    .get("[data-test='btnSearch']").click()
 
     .get(tableCell(1, 6)).contains(/komed/i).should('exist')
     .get(tableCell('last', 6)).contains(/komed/i).should('exist')
+
+/*
+*/
+    cy.get('#table > tbody > tr > td:nth-child(6)').wait(5000)
+    .each(($el, index, $list) => {
+      cy.wrap($el).invoke('text').then(text => {
+        //cy.log(text)
+
+        if(!text.match(/komed/i)) {
+          cy.log(text)
+          throw new Error('Incorrect station')
+        }
+      })
+    }).should('exist')
+
   })
 })
