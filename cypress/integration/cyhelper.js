@@ -3,7 +3,11 @@ export const dayAndHours = (day, startHour, endHour) => {
     .get("[data-test='day']").select(day)
     .get("[data-test='startHour']").select(startHour)
     .get("[data-test='endHour']").select(endHour)
+}
 
+export const category = (categoryIndex, timeout = 200) => {
+  const query = '#categories > div:nth-child(' + categoryIndex + ') > label > span'
+  cy.get(query).click().wait(timeout)
 }
 
 export const station = (groupName, stationIndex ) => {
@@ -11,7 +15,3 @@ export const station = (groupName, stationIndex ) => {
   cy.get(query).find('input').eq(stationIndex).click({ force: true })
 }
 
-export const category = (categoryIndex, timeout = 200) => {
-  const query = '#categories > div:nth-child(' + categoryIndex + ') > label > span'
-  cy.get(query).click().wait(timeout)
-}

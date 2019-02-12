@@ -222,14 +222,14 @@ const getAllChannels = () => {
 //getAllChannels()
 
 
-kanal(1, 1)
+// kanal(1, 1)
 
 // kanal(1, 2)
 // kanal(1, 3)
 // kanal(1, 4)
 // kanal(1, 5)
 // kanal(1, 6)
-// kanal(1, 7)
+kanal(1, 7)
 
 
 /*
