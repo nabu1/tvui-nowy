@@ -23,12 +23,10 @@ export const ajaxFindText = (context, text) => {
   let query = ''
   const minutes = 60 * 1000
   const day = context.getters.getDay
-  //const startOfDay = context.getters.getDay || new Date().setUTCHours(0, 0, 0, 0)
   const startOfDay = day || new Date().setUTCHours(0, 0, 0, 0)
   let startHour = context.getters.getStartHour
   const endHour = context.getters.getEndHour || 24
-  let categories = context.getters.getCategories
-  let stations = context.getters.getStations
+
 
   if (!startHour && (!day || new Date(day).getDate() === new Date().getDate())) {
     startHour = new Date().getHours()
@@ -43,67 +41,33 @@ export const ajaxFindText = (context, text) => {
   const end = startOfDay + endHour * 60 * minutes
   console.log('%c end = ' + new Date(end), 'color: orange')
 
-  categories = categories && categories.length ? JSON.stringify(categories) : null
-  stations = stations ? encodeURIComponent(JSON.stringify(stations)) : null
-
   ///query = `q={$or:[{"type":{"$regex":".*${text}.*",$options:"i"}},{"title":{"$regex":".*${text}.*",$options:"i"}}]}`
-
   /// const queryText = `s={timestamp:1}&q={$or:[{"type":{"$regex":".*${text}.*",$options:"i"}},{"title":{"$regex":".*${text}.*",$options:"i"}}]}`
-
   /// const queryTextFragment = `{$or:[{"type":{"$regex":".*${text}.*",$options:"i"}},{"title":{"$regex":".*${text}.*",$options:"i"}}]}`
+  /// const queryText = `q={$or:[{"type":{"$regex":".*${text}.*",$options:"i"}},{"title":{"$regex":".*${text}.*",$options:"i"}}]}`
 
   const queryTextFragment = `$or:[{"type":{"$regex":".*${text}.*",$options:"i"}},{"title":{"$regex":".*${text}.*",$options:"i"}}]`
-
-
   const queryHoursText = `s={timestamp:1}&q={"timestamp":{$gte:${start}},$and:[{"timestamp":{$lte:${end}}}],` + queryTextFragment + `}`
+  const queryText = `s={timestamp:1}&q={$or:[{"type":{"$regex":".*${text}.*",$options:"i"}},{"title":{"$regex":".*${text}.*",$options:"i"}}]}`
+
+  console.log('%c day = ' + day, 'color: orange')
+  console.log('%c day = ' + new Date(day), 'color: orange')
+  console.log('%c context.getters.getStartHour = ' + context.getters.getStartHour, 'color: orange')
+  console.log('%c  context.getters.getEndHour = ' +  context.getters.getEndHour, 'color: orange')
+
+  query = !day && !context.getters.getStartHour && !context.getters.getStartHour ? queryText : queryHoursText
+
+
   console.log('%c queryHoursText = ' + queryHoursText, 'color: lime')
-
-
-
-
-
-
-
-
-
-
-  const queryHours = `s={timestamp:1}&q={"timestamp":{$gte:${start}},$and:[{"timestamp":{$lte:${end}}}`
-  const queryStations = `${queryHours},{$and:[{"channel":{$in:${stations}}}]}]}`
-  const queryCategories = `${queryHours},{$and:[{"category":{$in:${categories}}}]}]}`
-  const queryCategoriesStations = `${queryHours},{$and:[{"category":{$in:${categories}}},{$and:[{"channel":{$in:${stations}}}]}]}]}`
-
-  if (categories && stations) {
-    console.log('categories && stations')
-    query = queryCategoriesStations
-  }
-  else if (categories) {
-    console.log('categories')
-    query = queryCategories
-  }
-  else if (stations) {
-    console.log('stations')
-    console.log('%c stations = ' + stations, 'color: lime')
-    query = queryStations
-  }
-  else {
-    console.log('hours')
-    query = `${queryHours}]}`
-  }
-
 
 
   /// const queryHours = `s={timestamp:1}&q={"timestamp":{$gte:${start}},$and:[{"timestamp":{$lte:${end}}}`
 
 
-
-
-
-
-  ///const urlFindText = LITERALS.TV_LIST_PREFIX + query + LITERALS.TV_LIST_SUFFIX
-
-  const urlFindText = LITERALS.TV_LIST_PREFIX + queryHoursText + LITERALS.TV_LIST_SUFFIX
+  /// const urlFindText = LITERALS.TV_LIST_PREFIX + queryHoursText + LITERALS.TV_LIST_SUFFIX
   //const urlFindText = LITERALS.TV_LIST_PREFIX + queryText + LITERALS.TV_LIST_SUFFIX
 
+  const urlFindText = LITERALS.TV_LIST_PREFIX + query + LITERALS.TV_LIST_SUFFIX
   console.log('%c urlFindText = ' + urlFindText, 'color: white')
 
   axios
