@@ -19,7 +19,7 @@ export const ajaxGetSelectedPrograms = context => {
 }
 
 export const ajaxFindText = (context, text) => {
-  const query = `s={timestamp:1}&q={"type":{"$regex":".*${text}.*",$options:"i"}}`
+  const query = `q={$or:[{"type":{"$regex":".*${text}.*",$options:"i"}},{"title":{"$regex":".*${text}.*",$options:"i"}}]}`
   const urlFindText = LITERALS.TV_LIST_PREFIX + query + LITERALS.TV_LIST_SUFFIX
   console.log('%c urlFindText = ' + urlFindText, 'color: white')
 
