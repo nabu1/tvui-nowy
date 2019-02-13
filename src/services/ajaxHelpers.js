@@ -43,7 +43,7 @@ export default context => {
   const queryCategories = `${queryHours},{$and:[{"category":{$in:${categories}}}]}]}`
   const queryCategoriesStations = `${queryHours},{$and:[{"category":{$in:${categories}}},{$and:[{"channel":{$in:${stations}}}]}]}]}`
 
-  if (categories && stations) {
+  if (categories && stations) { 
     console.log('categories && stations')
     query = queryCategoriesStations
   }
