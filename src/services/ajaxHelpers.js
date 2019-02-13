@@ -35,8 +35,8 @@ export default context => {
   //console.log('%c end = ' + new Date(end), 'color: yellow')
 
   categories = categories && categories.length ? JSON.stringify(categories) : null
-  //stations = stations ? encodeURIComponent(JSON.stringify(stations)) : null
-  stations = stations && stations.length ? JSON.stringify(stations) : null
+  stations = stations ? encodeURIComponent(JSON.stringify(stations)) : null
+  //stations = stations && stations.length ? JSON.stringify(stations) : null
 
   const queryHours = `s={timestamp:1}&q={"timestamp":{$gte:${start}},$and:[{"timestamp":{$lte:${end}}}`
   const queryStations = `${queryHours},{$and:[{"channel":{$in:${stations}}}]}]}`
