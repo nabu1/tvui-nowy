@@ -3,14 +3,14 @@
 import { dayAndHours, category, station, tableCell } from './cyhelper'
 
 describe('I. Selection by hours', () => {
-  it('1. Entering nothing gets "Śr 13 Luty" in last row and 23rd hour in the one', () => {
+  it.only('1. Entering nothing gets "Śr 13 Luty" in last row and 0 hour in the one', () => {
 
     dayAndHours('Śr 13 Luty', '', '')
-    cy.wait(5000)
+    cy.wait(3000)
     cy.get("[data-test='btnSearch']").click()
-      .get(tableCell(1, 4)).contains(/23.+/).should('exist')
+      .get(tableCell(1, 4)).contains(/0.+/).should('exist')
       .get(tableCell('last', 2)).should('have.text', 'Śr 13 Luty')
-    })
+  })
 
   it('2. Entering "Śr 13 Luty", "7" as startHour,  \
           "10" as endHour gest "6" or "7"in the first rows "Czas" column \
@@ -64,7 +64,7 @@ describe('II. Selection by hours and categories', () => {
 
 describe('IV. Selection by stations and hours', () => {
 
-  it.only('1. Entering "Śr 13 Luty", startHour = 10, endHour = 14, \
+  it('1. Entering "Śr 13 Luty", startHour = 10, endHour = 14, \
       checking "TVP1", "POLSAT" and "ATM Rozrywka" gets \
       "TVP 1" and "ATM Rozrywka", as stations names \
       in the 1st and last row of the table', () => {
@@ -106,7 +106,7 @@ describe('V. Selection by stations, categories and hours', () => {
       station('TvpTvn', 0)
       station('Canal', 2)
       station('DiscoveryNational', 3)
-      cy.get("[data-test='btnOK']").click().wait(1000)
+      cy.get("[data-test='btnOK']").click().wait(2000)
 
       category(2)
       category(7)
@@ -166,24 +166,18 @@ describe('VI. Selection by favorites, categories and hours', () => {
 })
 
 describe('VII. Selection by text search, stations, categories and hours', () => {
-  it('1. Entering keyword "komed" to the text search box gets entries \
+  it('1. Entering keyword "report" to the text search box gets entries \
       containing this word in the "title" column', () => {
 
     cy.visit('http://localhost:8080')
-    .get("[data-test='textSearch']").type('komed').wait(3000)
+    .get("[data-test='textSearch']").type('report').wait(2000)
     .get("[data-test='btnSearch']").click()
 
-    .get(tableCell(1, 6)).contains(/komed/i).should('exist')
-    .get(tableCell('last', 6)).contains(/komed/i).should('exist')
+    cy.get('#table > tbody > tr > td:nth-child(6)').wait(100)
 
-/*
-*/
-    cy.get('#table > tbody > tr > td:nth-child(6)').wait(5000)
     .each(($el, index, $list) => {
       cy.wrap($el).invoke('text').then(text => {
-        //cy.log(text)
-
-        if(!text.match(/komed/i)) {
+        if(!text.match(/report/i)) {
           cy.log(text)
           throw new Error('Incorrect station')
         }
