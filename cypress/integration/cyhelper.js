@@ -23,18 +23,3 @@ export const tableCell = (tr, td) => {
   return '#table > tbody > tr:nth-child(' + tr + ') > td:nth-child(' + td + ')'
 }
 
-
-/*
-     cy.get('#table > tbody > tr > td:nth-child(3)')
-     .each(($el, index, $list) => {
-       cy.wrap($el).invoke('text').then(text => {
-         //cy.log(text)
-
-         if(text !== 'TVP 1' && text !== 'POLSAT' && text !== 'ATM Rozrywka') {
-           cy.log(text)
-           throw new Error('Incorrect station')
-         }
-
-       })
-     }).should('exist')
-*/

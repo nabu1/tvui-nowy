@@ -3,7 +3,7 @@
 import { dayAndHours, category, station, tableCell } from './cyhelper'
 
 describe('I. Selection by hours', () => {
-  it.only('1. Entering nothing gets "Śr 13 Luty" in last row and 0 hour in the one', () => {
+  it('1. Entering nothing gets "Śr 13 Luty" in last row and 0 hour in the one', () => {
 
     dayAndHours('Śr 13 Luty', '', '')
     cy.wait(3000)
