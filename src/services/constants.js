@@ -20,6 +20,7 @@ export const FIELDS = [
   {
     key: 'dayString',
     label: 'Dzień&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
+    sortable: true,
   },
   {
     key: 'channel',
