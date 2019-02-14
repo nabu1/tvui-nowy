@@ -40,7 +40,7 @@ export default context => {
     console.log('categories')
     query = queryCategories
   }
-  else if (stations && stations.length) {
+  else if (stations && JSON.parse(decodeURIComponent(stations)).length) {
     console.log('stations')
     console.log('%c stations = ' + stations, 'color: lime')
     query = queryStations
