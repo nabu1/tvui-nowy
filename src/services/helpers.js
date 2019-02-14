@@ -1,17 +1,4 @@
 /* eslint-disable camelcase */
-
-let x = `{ "text": "Dzień", "value": null },
-{ "text": "Czw 14 Luty", "value": 1550102400000, "dayString": "Czw 14 Luty" },
-{ "text": "Pt 15 Luty", "value": 1550188800000, "dayString": "Pt 15 Luty" },
-{ "text": "Sob 16 Luty", "value": 1550275200000, "dayString": "Sob 16 Luty" },
-{ "text": "Nie 17 Luty", "value": 1550361600000, "dayString": "Nie 17 Luty" },
-{ "text": "Pon 18 Luty", "value": 1550448000000, "dayString": "Pon 18 Luty" },
-{ "text": "Wt 19 Luty", "value": 1550534400000, "dayString": "Wt 19 Luty" },
-{ "text": "Śr 20 Luty", "value": 1550620800000, "dayString": "Śr 20 Luty" }
-`
-
-
-// export const days = () => {
 const days = () => {
   const weekDayNames = ['Nie', 'Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob']
   const monthNames = ['Sty', 'Luty', 'Mar', 'Kwi', 'Maj', 'Cze', 'Lip', 'Sie', 'Wrz', 'Paź', 'Lis', 'Gru']
@@ -31,8 +18,7 @@ const days = () => {
 
     const dayObj = {
       text: dayString,
-      value: startOfDay,
-      dayString,
+      value: startOfDay
     }
 
     daysForSelectBox.push(dayObj)
@@ -57,7 +43,6 @@ const hoursArray = (start, end, isEnd) => {
   return hours
 }
 
-// export const startHours = (day, endHour) => {
 const startHours = (day, endHour) => {
   if ((!day || new Date(day).getDate() === new Date().getDate()) && !endHour) {
     return hoursArray(new Date().getHours(), 24, false)
@@ -65,7 +50,6 @@ const startHours = (day, endHour) => {
   return hoursArray(3, 24, false)
 }
 
-//export const endHours = (day, startHour) => {
 const endHours = (day, startHour) => {
   // console.log('%c startHour = ' + startHour, 'color: white')
 
@@ -82,7 +66,6 @@ const endHours = (day, startHour) => {
 
   return hoursArray(3, 25, true)
 }
-
 
 module.exports.days = days
 module.exports.startHours = startHours
