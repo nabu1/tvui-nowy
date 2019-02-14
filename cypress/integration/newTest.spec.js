@@ -158,7 +158,7 @@ describe('VI. Selection by favorites, categories and hours', () => {
 })
 
 describe('VII. Selection by text search, stations, categories and hours', () => {
-  it.only('1. Entering keyword "leśn" to the text search box gets entries \
+  it('1. Entering keyword "leśn" to the text search box gets entries \
       containing this word in the "title" column', () => {
 
     const word = 'leśn'
