@@ -23,3 +23,13 @@ export const tableCell = (tr, td) => {
   return '#table > tbody > tr:nth-child(' + tr + ') > td:nth-child(' + td + ')'
 }
 
+export const eachLoop = (el, arr) => {
+  cy.wrap(el).invoke('text').then(text => {
+    //const arr = ['TVP 1', 'POLSAT', 'ATM Rozrywka']
+
+    if (!arr.includes(text)) {
+      throw new Error('Incorrect station')
+    }
+  })
+
+}
