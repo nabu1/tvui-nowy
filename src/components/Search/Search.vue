@@ -31,7 +31,7 @@ export default {
   },
   mounted() {
     if (!localStorage.getItem('vuex_ft')) {
-      this.$refs.modalFirstTime.show() 
+      // this.$refs.modalFirstTime.show()  // fixme odkomentuj jak skończysz testy !
       localStorage.setItem('vuex_ft', true)
     }
   },

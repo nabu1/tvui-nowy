@@ -6,6 +6,7 @@ export const ajaxGetSelectedPrograms = context => {
   axios
     .get(url(context))
     .then(res => {
+      // context.commit('SET_LOADING', false)
       if (res.data.length > 999) alert(LITERALS.EXCESSIVE_DATA_MSG)
       console.log('%c res.data.length = ' + res.data.length, 'color: violet')
 
