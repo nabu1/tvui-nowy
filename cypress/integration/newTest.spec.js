@@ -1,6 +1,6 @@
 /* eslint-disable*/
 /// <reference types="Cypress" />
-import { dayAndHours, category, station, tableCell, eachLoop } from './cyhelper'
+import { dayAndHours, category, station, tableCell, isWordInColumn } from './cyhelper'
 
 describe('I. Selection by hours', () => {
   it('1. Entering nothing gets "Śr 20 Luty" in last row and 0 hour in the one', () => {
@@ -169,7 +169,7 @@ describe('VII. Selection by text search, stations, categories and hours', () => 
 
     cy.get('#table > tbody > tr > td:nth-child(5)').wait(100)
       .each(($el, index, $list) => {
-        eachLoop($el, word)
+        isWordInColumn($el, word)
       }).should('exist')
 
   })

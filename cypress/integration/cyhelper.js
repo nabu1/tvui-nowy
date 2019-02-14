@@ -23,7 +23,7 @@ export const tableCell = (tr, td) => {
   return '#table > tbody > tr:nth-child(' + tr + ') > td:nth-child(' + td + ')'
 }
 
-export const eachLoop = (el, word) => {
+export const isWordInColumn = (el, word) => {
   const regex = new RegExp(word, 'i')
 
   cy.wrap(el).invoke('text').then(text => {
