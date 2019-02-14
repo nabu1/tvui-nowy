@@ -23,11 +23,11 @@ export const tableCell = (tr, td) => {
   return '#table > tbody > tr:nth-child(' + tr + ') > td:nth-child(' + td + ')'
 }
 
-export const eachLoop = (el, arr) => {
-  cy.wrap(el).invoke('text').then(text => {
-    //const arr = ['TVP 1', 'POLSAT', 'ATM Rozrywka']
+export const eachLoop = (el, word) => {
+  const regex = new RegExp(word, 'i')
 
-    if (!arr.includes(text)) {
+  cy.wrap(el).invoke('text').then(text => {
+    if (!text.match(regex)) {
       throw new Error('Incorrect station')
     }
   })

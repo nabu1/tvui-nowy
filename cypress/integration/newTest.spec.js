@@ -65,7 +65,7 @@ describe('II. Selection by hours and categories', () => {
 
 describe('IV. Selection by stations and hours', () => {
 
-  it.only('1. Entering "Śr 20 Luty", startHour = 10, endHour = 14, \
+  it('1. Entering "Śr 20 Luty", startHour = 10, endHour = 14, \
       checking "TVP1", "POLSAT" and "ATM Rozrywka" gets \
       "TVP 1" and "ATM Rozrywka", as stations names \
       in the 1st and last row of the table', () => {
@@ -158,25 +158,19 @@ describe('VI. Selection by favorites, categories and hours', () => {
 })
 
 describe('VII. Selection by text search, stations, categories and hours', () => {
-  it('1. Entering keyword "motoc" to the text search box gets entries \
+  it.only('1. Entering keyword "leśn" to the text search box gets entries \
       containing this word in the "title" column', () => {
 
+    const word = 'leśn'
+
     cy.visit('http://localhost:8080')
-    .get("[data-test='textSearch']").type('motoc').wait(2000)
+    .get("[data-test='textSearch']").type(word).wait(2000)
     .get("[data-test='btnSearch']").click()
 
-    //cy.pause()
-    // cy.get('#table > tbody > tr > td:nth-child(6), td:nth-child(7)').wait(100)
     cy.get('#table > tbody > tr > td:nth-child(5)').wait(100)
-
-    .each(($el, index, $list) => {
-      cy.wrap($el).invoke('text').then(text => {
-        if(!text.match(/motoc/i)) {
-          cy.log(text)
-          throw new Error('Incorrect station')
-        }
-      })
-    }).should('exist')
+      .each(($el, index, $list) => {
+        eachLoop($el, word)
+      }).should('exist')
 
   })
 })
