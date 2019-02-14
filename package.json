@@ -10,7 +10,7 @@
     "cydev": "vue-cli-service serve",
     "deploy": "npm run build && cd dist && now",
     "devbuild": "npm run build && serve -s dist",
-    "test": "jest"
+    "test": "jest --watchAll"
   },
   "jest": {
     "testEnvironment": "node"
