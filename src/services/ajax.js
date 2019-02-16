@@ -59,8 +59,8 @@ export const ajaxFindText = (context, text) => {
 
 export const email = (address, favorites) => {
   let html = ''
-  const subject = 'TVui telewizyjny rozklad jazdy'
-  const proxy = 'https://wt-nabu1312-gmail-com-0.sandbox.auth0-extend.com/email'
+  const subject = LITERALS.EMAIL_SUBJECT
+  const proxy = LITERALS.EMAIL_PROXY
   const favoritesObj = JSON.parse(favorites)
 
   favoritesObj.map(el => {
