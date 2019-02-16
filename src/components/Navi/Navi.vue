@@ -38,10 +38,6 @@ export default {
     onEmail() {
       email = this.$store.getters.getEmail
       favorites = this.$store.getters.getFavorites
-
-      console.log('%c email = ' + email, 'color: white')
-      console.log('favorites = ' + favorites)
-
       if (!favorites) return alert('Brak wybranych programów')
       if (!email) return this.$refs.modalEmail.show()
 
