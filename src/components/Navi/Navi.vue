@@ -1,6 +1,7 @@
 <template src="./Navi.html"></template>
 
 <script>
+import { email } from '../../services/helpers'
 
 export default {
   data() {
@@ -30,6 +31,12 @@ export default {
       return this.$store.getters.getDocumentsCount
     }
   },
+  methods: {
+    sendEmail() {
+      email('nabu1312@gmail.com')
+      console.log('email pchnięty !')
+    }
+  }
 }
 </script>
 
