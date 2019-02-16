@@ -57,11 +57,21 @@ export const ajaxFindText = (context, text) => {
     })
 }
 
-export const email = mailTo => {
-  let html = '<h3><a href="https://programtv.onet.pl/tv/ojciec-mateusz-3-35645?entry=29722054">Sob 16 Luty 15:30 TVN Ojciec Mateusz</a></h3>'
-  html += '<h3><a href="https://programtv.onet.pl/tv/ojciec-mateusz-3-35645?entry=29722054">Sob 16 Luty 22:00 TVN Wujek Zdzisiek</a></h3>'
+export const email = (address, favorites) => {
+  let html = ''
+  const subject = 'TVui telewizyjny rozklad jazdy'
+  const proxy = 'https://wt-nabu1312-gmail-com-0.sandbox.auth0-extend.com/email'
+  const favoritesObj = JSON.parse(favorites)
 
-  const mailUrl = 'https://wt-nabu1312-gmail-com-0.sandbox.auth0-extend.com/email?to=' + mailTo + '&html=' + html
+  favoritesObj.map(el => {
+    html += '<h4>' + el.dayString + ' ' + el.time + ' ' + el.channel + ' ' + el.title + '</h4>'
+  })
+
+  html = 'Wybrane przez Ciebie programy na najbliższy tydzień:' + html
+
+  console.log('%c html = ' + html, 'color: lightblue')
+
+  const mailUrl = proxy + '?to=' + address + '&subject=' + subject + '&html=' + html
 
   console.log('%c mailUrl = ' + mailUrl, 'color: orange')
 

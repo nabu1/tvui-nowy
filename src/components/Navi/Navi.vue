@@ -33,8 +33,8 @@ export default {
   },
   methods: {
     sendEmail() {
-      email('nabu1312@gmail.com')
-      console.log('email pchnięty !')
+      const address = 'nabu1312@gmail.com'
+      email(address, JSON.stringify(this.$store.getters.getFavorites))
     }
   }
 }
