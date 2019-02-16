@@ -1,6 +1,4 @@
 /* eslint-disable camelcase */
-const axios = require('axios')
-
 const days = () => {
   const weekDayNames = ['Nie', 'Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob']
   const monthNames = ['Sty', 'Luty', 'Mar', 'Kwi', 'Maj', 'Cze', 'Lip', 'Sie', 'Wrz', 'Paź', 'Lis', 'Gru']
@@ -69,25 +67,6 @@ const endHours = (day, startHour) => {
   return hoursArray(3, 25, true)
 }
 
-
-
-const email = mailTo  => {
-
-  let html = '<h3><a href="https://programtv.onet.pl/tv/ojciec-mateusz-3-35645?entry=29722054">Sob 16 Luty 15:30 TVN Ojciec Mateusz</a></h3>'
-  html += '<h3><a href="https://programtv.onet.pl/tv/ojciec-mateusz-3-35645?entry=29722054">Sob 16 Luty 22:00 TVN Wujek Zdzisiek</a></h3>'
-
-  const url = 'https://wt-nabu1312-gmail-com-0.sandbox.auth0-extend.com/email?to=' + mailTo + '&html=' + html
-
-  console.log('%c url = ' + url, 'color: white')
-
-
-  axios.post(url)
-    .then(() => console.log('Mail pchnięty !'))
-    .catch( err => console.log('Mail dupa: ', err))
-}
-
-
 module.exports.days = days
 module.exports.startHours = startHours
 module.exports.endHours = endHours
-module.exports.email = email

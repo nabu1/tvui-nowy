@@ -1,7 +1,7 @@
 <template src="./Navi.html"></template>
 
 <script>
-import { email } from '../../services/helpers'
+import { email } from '../../services/ajax'
 
 export default {
   data() {

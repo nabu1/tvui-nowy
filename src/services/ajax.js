@@ -20,7 +20,6 @@ export const ajaxGetSelectedPrograms = context => {
 }
 
 export const ajaxFindText = (context, text) => {
-
   let query = ''
   const minutes = 60 * 1000
   const day = context.getters.getDay
@@ -56,4 +55,17 @@ export const ajaxFindText = (context, text) => {
     .finally(() => {
       context.commit('SET_LOADING', false)
     })
+}
+
+export const email = mailTo => {
+  let html = '<h3><a href="https://programtv.onet.pl/tv/ojciec-mateusz-3-35645?entry=29722054">Sob 16 Luty 15:30 TVN Ojciec Mateusz</a></h3>'
+  html += '<h3><a href="https://programtv.onet.pl/tv/ojciec-mateusz-3-35645?entry=29722054">Sob 16 Luty 22:00 TVN Wujek Zdzisiek</a></h3>'
+
+  const mailUrl = 'https://wt-nabu1312-gmail-com-0.sandbox.auth0-extend.com/email?to=' + mailTo + '&html=' + html
+
+  console.log('%c mailUrl = ' + mailUrl, 'color: orange')
+
+  axios.post(mailUrl)
+    .then(() => console.log('Mail pchnięty !'))
+    .catch( err => console.log('Mail dupa: ', err))
 }
