@@ -20,7 +20,7 @@ export default {
       const stations = this.$store.getters.getStations
 
       if (stations) {
-        return stations.join(', ').length > 65 ? `${stations.join(', ').slice(0, 65)} ...` : stations.join(', ')
+        return stations.join(', ').length > 62 ? `${stations.join(', ').slice(0, 62)} ...` : stations.join(', ')
       }
 
       return 'Wszystkie stacje'
@@ -69,7 +69,7 @@ export default {
 
 <style>
 a {
-  color: greenyellow;
+  color: lime;
   font-size: 1.1em
 }
 body {

@@ -74,7 +74,11 @@ export const sendEmail = (email, favorites) => {
 
   axios.post(mailUrl)
     .then(() => {
-      console.log('Mail pchnięty !')
+      console.log('Email wysłany')
+      alert('Email wysłany. Sprawdź za chwilę skrzynkę')
     })
-    .catch(err => console.log('Mail dupa: ', err))
+    .catch(err => console.log('Mail error: ', err))
+    .finally(() => {
+      alert('Email wysłany. Sprawdź za chwilę skrzynkę')
+    })
 }
