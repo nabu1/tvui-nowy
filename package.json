@@ -27,6 +27,7 @@
     "eslint-plugin-prettier": "3.0.1",
     "jest": "22.4.4",
     "lodash": "4.17.11",
+    "prerender-spa-plugin": "3.4.0",
     "vue": "^2.6.2",
     "vue-router": "^3.0.2",
     "vuex": "^3.1.0",

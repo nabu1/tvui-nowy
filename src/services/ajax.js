@@ -82,3 +82,4 @@ export const sendEmail = (email, favorites) => {
       alert('Email wysłany. Sprawdź za chwilę skrzynkę')
     })
 }
+

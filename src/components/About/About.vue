@@ -1,7 +1,7 @@
 <template src="./About.html"></template>
 
 <style scoped>
-div {
+#about {
   color: white;
 }
 </style>
