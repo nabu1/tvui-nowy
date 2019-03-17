@@ -16,12 +16,12 @@ export default context => {
 
   const start = startOfDay + startHour * 60 * minutes - 30 * minutes
 
-  // console.log('%c startHour = ' + startHour, 'color: orange')
-  // console.log('%c start = ' + new Date(start), 'color: orange')
-  // console.log('%c new Date().getMinutes() - 30 = ' + (new Date().getMinutes() - 30), 'color: white')
+
+
+
 
   const end = startOfDay + endHour * 60 * minutes
-  // console.log('%c end = ' + new Date(end), 'color: orange')
+
 
   categories = categories && categories.length ? JSON.stringify(categories) : null
   stations = stations && stations.length ? encodeURIComponent(JSON.stringify(stations)) : null
@@ -32,30 +32,28 @@ export default context => {
   const queryCategoriesStations = `${queryHours},{$and:[{"category":{$in:${categories}}},{$and:[{"channel":{$in:${stations}}}]}]}]}`
 
   if (categories && categories.length && stations && stations.length) {
-    console.log('categories && stations')
+
     query = queryCategoriesStations
-    console.log('%c query = ' + query, 'color: yellow')
+
   }
   else if (categories && categories.length ) {
-    console.log('categories')
+
     query = queryCategories
   }
   else if (stations && JSON.parse(decodeURIComponent(stations)).length) {
-    console.log('stations')
-    console.log('%c stations = ' + stations, 'color: yellow')
+
+
     query = queryStations
-    console.log('%c query = ' + query, 'color: yellow')
+
   }
   else {
-    console.log('hours')
+
     query = `${queryHours}]}`
-    console.log('%c query = ' + query, 'color: yellow')
+
   }
 
   const urlString = LITERALS.TV_LIST_PREFIX + query + LITERALS.TV_LIST_SUFFIX
-  console.log('%c urlString =  ' + urlString, 'color: lime')
+
 
   return urlString
 }
-
-

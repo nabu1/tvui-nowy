@@ -41,7 +41,7 @@ export default {
       if (!favorites) return alert('Brak wybranych programów')
       if (!email) return this.$refs.modalEmail.show()
 
-      console.log('%c Mail jest idę do sendEmail = ', 'color: white')
+
       sendEmail(email, favorites)
     },
     clearEmail() {
@@ -61,7 +61,7 @@ export default {
       sendEmail(this.email, favorites)
       this.clearEmail()
       this.$refs.modalEmail.hide()
-      console.log('%c Mail teraz już jest, idę do sendMail; this.email = ' + this.email, 'color: white')
+
     }
   }
 }

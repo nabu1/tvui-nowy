@@ -15,7 +15,7 @@ export default {
       days: days(),
       categoriesList: CATEGORIES,
       loading: this.$store.getters.getLoading,
-      // selected: 'Nie, 10 Luty'
+
     }
   },
   computed: {
@@ -31,24 +31,24 @@ export default {
   },
   mounted() {
     if (!localStorage.getItem('vuex_ft')) {
-      // this.$refs.modalFirstTime.show()  // fixme odkomentuj jak skończysz testy !
+
       localStorage.setItem('vuex_ft', true)
     }
   },
   methods: {
     categorySelected(categories) {
-      // console.log('%c ___________________', 'color: violet')
-      // console.log('%c categories = ' + categories, 'color: violet')
-      // console.log('%c categories = ' + JSON.stringify(categories), 'color: violet')
-      // console.log('%c typeof categories = ' + typeof categories, 'color: violet')
-      // console.log('%c categories = ' + Array.isArray(categories), 'color: violet')
+
+
+
+
+
 
       if (!categories.length) {
         categories = ['film', 'serial', 'sport', 'wiadomosci', 'rozrywka', 'dla dzieci', 'inne']
-        console.log('%c categories PO = ' + JSON.stringify(categories), 'color: violet')
+
       }
 
-      categories.map(el => console.log(el))
+
 
       const todaysPrograms = this.$store.getters.getTodaysPrograms
 
@@ -56,7 +56,7 @@ export default {
         return categories.includes(el.category)
       })
 
-      console.log('%c categoryFiltered.length = ' + categoryFiltered.length, 'color: lime')
+
 
       this.$store.commit('SHOW_CATEGORIES', true)
       this.$store.dispatch('setCategoryFiltered', categoryFiltered)

@@ -45,7 +45,7 @@ export default new Vuex.Store({
   },
   mutations: {
     START_STATIONS(state, todaysPrograms) {
-      // console.log('%c todaysPrograms = ' + todaysPrograms.length, 'color: violet')
+
       state.todaysPrograms = todaysPrograms || state.selectedPrograms
 
       if (todaysPrograms) {
@@ -83,7 +83,7 @@ export default new Vuex.Store({
       state.showCategories = bool
     },
     AJAX_FIND_TEXT(state, foundPrograms) {
-      console.log('%c foundPrograms = ' + foundPrograms.length, 'color: white')
+
       state.todaysPrograms = foundPrograms
     },
     ADD_SAVED_PROGRAMS(state, savedPrograms) {
@@ -105,7 +105,7 @@ export default new Vuex.Store({
       state.documentsCount = documentsCount
     },
     SET_EMAIL(state, email) {
-      console.log('%c 2) SET_EMAIL email = ' + email, 'color: white')
+
       state.email = email
     }
   },
@@ -138,7 +138,7 @@ export default new Vuex.Store({
       context.commit('ADD_SELECTED_PROGRAMS', selectedPrograms)
     },
     findText(context, text) {
-      console.log('%c text = ' + text, 'color: white')
+
       context.commit('SET_LOADING', true)
       ajaxFindText(context, text)
     },
@@ -152,7 +152,7 @@ export default new Vuex.Store({
       context.commit('RESET_FAVORITES')
     },
     setEmail(context, email) {
-      console.log('1. Tu setEmail()')
+
       context.commit('SET_EMAIL', email)
     },
   },

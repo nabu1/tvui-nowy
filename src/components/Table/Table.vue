@@ -21,13 +21,11 @@ export default {
         return getFavorites || []
       }
 
-      //if (showCategories && categoryFiltered && categoryFiltered.length) {
       if (showCategories) {
-        // console.log('%c showCategories = ' + showCategories, 'color: yellow')
         return this.$store.getters.getCategoryFiltered
       }
 
-      // console.log('%c todaysPrograms = ' + todaysPrograms.length, 'color: yellow')
+      //
       return todaysPrograms
     },
     loading() {
@@ -37,8 +35,6 @@ export default {
   created() {
     this.$store.dispatch('getSelectedPrograms')
     this.$store.dispatch('setLoading', true)
-    // this.$store.commit('GET_DOCUMENTS_COUNT', 0)
-    //this.$store.commit('', true)
   },
   methods: {
     onRowClicked(item) {

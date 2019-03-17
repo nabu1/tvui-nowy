@@ -1,4 +1,4 @@
-/* eslint-disable camelcase */
+
 const days = () => {
   const weekDayNames = ['Nie', 'Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob']
   const monthNames = ['Sty', 'Luty', 'Mar', 'Kwi', 'Maj', 'Cze', 'Lip', 'Sie', 'Wrz', 'Paź', 'Lis', 'Gru']
@@ -51,7 +51,7 @@ const startHours = (day, endHour) => {
 }
 
 const endHours = (day, startHour) => {
-  // console.log('%c startHour = ' + startHour, 'color: white')
+
 
   if ((!day || new Date(day).getDate() === new Date().getDate()) ) {
     if (startHour) {
