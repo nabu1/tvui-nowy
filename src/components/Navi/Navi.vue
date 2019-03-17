@@ -2,6 +2,7 @@
 
 <script>
 import { sendEmail } from '../../services/ajax'
+
 let email = ''
 let favorites = null
 
@@ -22,7 +23,6 @@ export default {
       if (stations) {
         return stations.join(', ').length > 62 ? `${stations.join(', ').slice(0, 62)} ...` : stations.join(', ')
       }
-
       return 'Wszystkie stacje'
     },
     documents() {
@@ -40,7 +40,6 @@ export default {
       favorites = this.$store.getters.getFavorites
       if (!favorites) return alert('Brak wybranych programów')
       if (!email) return this.$refs.modalEmail.show()
-
 
       sendEmail(email, favorites)
     },
@@ -61,7 +60,6 @@ export default {
       sendEmail(this.email, favorites)
       this.clearEmail()
       this.$refs.modalEmail.hide()
-
     }
   }
 }

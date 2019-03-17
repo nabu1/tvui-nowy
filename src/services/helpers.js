@@ -51,8 +51,6 @@ const startHours = (day, endHour) => {
 }
 
 const endHours = (day, startHour) => {
-
-
   if ((!day || new Date(day).getDate() === new Date().getDate()) ) {
     if (startHour) {
       return hoursArray(startHour, 25, true)

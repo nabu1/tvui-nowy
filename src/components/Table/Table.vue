@@ -24,8 +24,6 @@ export default {
       if (showCategories) {
         return this.$store.getters.getCategoryFiltered
       }
-
-      //
       return todaysPrograms
     },
     loading() {
@@ -41,14 +39,10 @@ export default {
       let favorites = this.$store.getters.getFavorites || []
 
       if (this.$store.getters.showFavorites) {
-        favorites = favorites.filter(el => {
-          return el.id !== item.id
-        })
+        favorites = favorites.filter(el => el.id !== item.id)
       }
       else {
-        const isPresent = favorites.some(el => {
-          return el.id === item.id
-        })
+        const isPresent = favorites.some(el => el.id === item.id)
         if (!isPresent) favorites.push(item)
       }
       this.$store.dispatch('addFavorites', favorites)

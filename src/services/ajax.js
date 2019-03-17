@@ -6,10 +6,7 @@ export const ajaxGetSelectedPrograms = context => {
   axios
     .get(url(context))
     .then(res => {
-
       if (res.data.length > 999) alert(LITERALS.EXCESSIVE_DATA_MSG)
-
-
       context.commit('GET_DOCUMENTS_COUNT', res.data.length)
       context.commit('START_STATIONS', res.data)
     })
@@ -35,18 +32,16 @@ export const ajaxFindText = (context, text) => {
   const end = startOfDay + endHour * 60 * minutes
 
   const queryTextFragment = `$or:[{"type":{"$regex":".*${text}.*",$options:"i"}},{"title":{"$regex":".*${text}.*",$options:"i"}}]`
-  const queryHoursText = `s={timestamp:1}&q={"timestamp":{$gte:${start}},$and:[{"timestamp":{$lte:${end}}}],` + queryTextFragment + `}`
+  const queryHoursText = `s={timestamp:1}&q={"timestamp":{$gte:${start}},$and:[{"timestamp":{$lte:${end}}}],` + queryTextFragment + '}'
   const queryText = `s={timestamp:1}&q={$or:[{"type":{"$regex":".*${text}.*",$options:"i"}},{"title":{"$regex":".*${text}.*",$options:"i"}}]}`
 
   query = !day && !context.getters.getStartHour && !context.getters.getStartHour ? queryText : queryHoursText
 
   const urlTextSearch = LITERALS.TV_LIST_PREFIX + query + LITERALS.TV_LIST_SUFFIX
 
-
   axios
     .get(urlTextSearch)
     .then(res => {
-
       context.commit('GET_DOCUMENTS_COUNT', res.data.length)
       context.commit('SHOW_CATEGORIES', false)
       context.commit('AJAX_FIND_TEXT', res.data)
@@ -62,18 +57,15 @@ export const sendEmail = (email, favorites) => {
   const subject = LITERALS.EMAIL_SUBJECT
   const proxy = LITERALS.EMAIL_PROXY
 
-  favorites.map(el => {
+  favorites.forEach(el => {
     html += '<h4>' + el.dayString + ' ' + el.time + ' ' + el.channel + ' ' + el.title + '</h4>'
   })
 
   html = 'Wybrane przez Ciebie programy na najbliższy tydzień:' + html
-
   const mailUrl = proxy + '?to=' + email + '&subject=' + subject + '&html=' + html
-
 
   axios.post(mailUrl)
     .then(() => {
-
       alert('Email wysłany. Sprawdź za chwilę skrzynkę')
     })
     .catch(err => console.log('Mail error: ', err))

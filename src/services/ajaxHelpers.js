@@ -15,13 +15,7 @@ export default context => {
   }
 
   const start = startOfDay + startHour * 60 * minutes - 30 * minutes
-
-
-
-
-
   const end = startOfDay + endHour * 60 * minutes
-
 
   categories = categories && categories.length ? JSON.stringify(categories) : null
   stations = stations && stations.length ? encodeURIComponent(JSON.stringify(stations)) : null
@@ -32,28 +26,19 @@ export default context => {
   const queryCategoriesStations = `${queryHours},{$and:[{"category":{$in:${categories}}},{$and:[{"channel":{$in:${stations}}}]}]}]}`
 
   if (categories && categories.length && stations && stations.length) {
-
     query = queryCategoriesStations
-
   }
   else if (categories && categories.length ) {
-
     query = queryCategories
   }
   else if (stations && JSON.parse(decodeURIComponent(stations)).length) {
-
-
     query = queryStations
-
   }
   else {
-
     query = `${queryHours}]}`
-
   }
 
   const urlString = LITERALS.TV_LIST_PREFIX + query + LITERALS.TV_LIST_SUFFIX
-
 
   return urlString
 }

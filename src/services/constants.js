@@ -4,7 +4,8 @@ export const LITERALS = {
   TV_LIST_SUFFIX: '&apiKey=XRr-4BkluC11FFgtbOnUhzUlodvp8RfI',
   START_STATIONS: ['TVP 1', 'TVP 2', 'TVN', 'POLSAT'],
   CATEGORY_NAMES: ['film', 'serial', 'sport', 'wiadomosci', 'rozrywka', 'dzieci', 'inne'],
-  EXCESSIVE_DATA_MSG: 'Zmniejsz ilość stacji TV (najważniejsze), ustaw przedział czasu, lub wybierz kategorie, bo teraz część późniejszych programów nie jest wyświetlana',
+  EXCESSIVE_DATA_MSG: 'Zmniejsz ilość stacji TV (najważniejsze), ustaw przedział czasu, lub wybierz kategorie, \
+    bo teraz część późniejszych programów nie jest wyświetlana',
   EMAIL_PROXY: 'https://wt-nabu1312-gmail-com-0.sandbox.auth0-extend.com/email',
   EMAIL_SUBJECT: 'TVui telewizyjny rozklad jazdy',
 }
@@ -14,11 +15,6 @@ export const FIELDS = [
     key: 'index',
     label: '#',
   },
-  /* {
-    key: 'id',
-    label: 'id',
-    sortable: true,
-  }, */
   {
     key: 'dayString',
     label: 'Dzień&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
@@ -34,16 +30,6 @@ export const FIELDS = [
     label: 'Stacja',
     sortable: true,
   },
-  /* {
-           key: 'timestamp',
-           label: 'Stamp',
-           sortable: true,
-         }, */
-  /* {
-    key: 'date',
-    label: 'dateTimestamp',
-    sortable: true,
-  }, */
   {
     key: 'title',
     label: 'Tytuł',

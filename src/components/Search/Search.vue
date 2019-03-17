@@ -15,7 +15,6 @@ export default {
       days: days(),
       categoriesList: CATEGORIES,
       loading: this.$store.getters.getLoading,
-
     }
   },
   computed: {
@@ -31,39 +30,21 @@ export default {
   },
   mounted() {
     if (!localStorage.getItem('vuex_ft')) {
-
       localStorage.setItem('vuex_ft', true)
     }
   },
   methods: {
     categorySelected(categories) {
-
-
-
-
-
-
       if (!categories.length) {
         categories = ['film', 'serial', 'sport', 'wiadomosci', 'rozrywka', 'dla dzieci', 'inne']
-
       }
 
-
-
       const todaysPrograms = this.$store.getters.getTodaysPrograms
-
-      const categoryFiltered = todaysPrograms.filter(el => {
-        return categories.includes(el.category)
-      })
-
-
+      const categoryFiltered = todaysPrograms.filter(el => categories.includes(el.category))
 
       this.$store.commit('SHOW_CATEGORIES', true)
       this.$store.dispatch('setCategoryFiltered', categoryFiltered)
       this.$store.dispatch('setCategories', categories)
-      /*
-       */
-
     },
     daySelected(day) {
       this.$store.dispatch('setDay', day)

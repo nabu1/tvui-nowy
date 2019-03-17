@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
-
 import { ajaxGetSelectedPrograms, ajaxFindText } from '../services/ajax'
 
 Vue.use(Vuex)
@@ -45,9 +44,7 @@ export default new Vuex.Store({
   },
   mutations: {
     START_STATIONS(state, todaysPrograms) {
-
       state.todaysPrograms = todaysPrograms || state.selectedPrograms
-
       if (todaysPrograms) {
         state.loading = true
       }
@@ -83,7 +80,6 @@ export default new Vuex.Store({
       state.showCategories = bool
     },
     AJAX_FIND_TEXT(state, foundPrograms) {
-
       state.todaysPrograms = foundPrograms
     },
     ADD_SAVED_PROGRAMS(state, savedPrograms) {
@@ -105,7 +101,6 @@ export default new Vuex.Store({
       state.documentsCount = documentsCount
     },
     SET_EMAIL(state, email) {
-
       state.email = email
     }
   },
@@ -138,7 +133,6 @@ export default new Vuex.Store({
       context.commit('ADD_SELECTED_PROGRAMS', selectedPrograms)
     },
     findText(context, text) {
-
       context.commit('SET_LOADING', true)
       ajaxFindText(context, text)
     },
@@ -152,7 +146,6 @@ export default new Vuex.Store({
       context.commit('RESET_FAVORITES')
     },
     setEmail(context, email) {
-
       context.commit('SET_EMAIL', email)
     },
   },
